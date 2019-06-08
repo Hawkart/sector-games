@@ -1,0 +1,56 @@
+.nk-info-box {
+    position: relative;
+    display: block;
+    padding: 30px;
+    padding-right: 40px;
+    padding-left: 118px;
+    margin-bottom: 1.7rem;
+    overflow: hidden;
+    color: $color_headings;
+    background-color: $color_dark_2;
+    border: 1px solid $color_dark_3;
+    border-radius: 4px;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 {
+        margin-top: -6px;
+        margin-bottom: .7rem;
+        color: inherit;
+    }
+
+    &.nk-info-box-noicon {
+        padding-left: 40px;
+    }
+
+    .nk-info-box-icon {
+        position: absolute;
+        display: block;
+        width: 52px;
+        height: 52px;
+        margin-top: -3px;
+        margin-left: -85px;
+        font-size: 1.7rem;
+        line-height: 52px - 8px;
+        text-align: center;
+        border: 4px solid;
+        border-radius: 26px;
+    }
+    .nk-info-box-close-btn {
+        display: block;
+        float: right;
+        margin-top: -7px;
+        margin-right: -20px;
+        font-size: 1.3rem;
+        cursor: pointer;
+    }
+}

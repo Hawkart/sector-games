@@ -1,0 +1,119 @@
+.nk-image-slider {
+    position: relative;
+    height: 360px;
+    overflow: hidden;
+    background-color: $color_dark_2;
+    border-bottom: 3px solid $color_main_1;
+    z-index: 0;
+
+    // hide items list
+    .nk-image-slider-item {
+        position: absolute;
+        left: -150%;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    // background
+    .nk-image-slider-bg,
+    .nk-image-slider-bg-transition {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-position: center center;
+        background-size: cover;
+        z-index: -1;
+    }
+    .nk-image-slider-bg-transition {
+        z-index: -2;
+    }
+
+    // content
+    .nk-image-slider-content {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 50px;
+        width: 315px;
+        background-color: rgba(#000, .8);
+
+        .nano-content {
+            padding: 25px;
+        }
+    }
+
+    // thumbs
+    .nk-image-slider-thumbs {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 315px;
+        height: 50px;
+        overflow: hidden;
+        background-color: rgba(#000, .8);
+
+        // fix click event
+        &.is-dragging {
+            pointer-events: none;
+        }
+
+        ul {
+            display: flex;
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+
+            li {
+                position: relative;
+                width: (315 / 4) + px;
+                min-width: (315 / 4) + px;
+                height: 50px;
+                overflow: hidden;
+                cursor: pointer;
+                background-position: center center;
+                background-size: cover;
+
+                // overlay
+                .nk-image-slider-thumbs-overlay {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    background-color: $color_main_1;
+                    opacity: .5;
+                    transition: .15s opacity;
+                }
+                &:hover .nk-image-slider-thumbs-overlay,
+                &.hover .nk-image-slider-thumbs-overlay {
+                    opacity: .2;
+                }
+
+                // active item
+                &.nk-image-slider-thumbs-active .nk-image-slider-thumbs-overlay {
+                    opacity: 0;
+                }
+
+                // counter
+                .nk-image-slider-thumbs-count {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 30px;
+                    height: 30px;
+                    margin-top: -15px;
+                    margin-left: -15px;
+                    font-weight: 600;
+                    line-height: 30px;
+                    color: #000;
+                    text-align: center;
+                    background-color: $color_headings;
+                    border-radius: 50%;
+                    z-index: 1;
+                }
+            }
+        }
+    }
+}

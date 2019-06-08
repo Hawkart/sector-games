@@ -1,0 +1,2 @@
+webpackJsonp([1],{"/WL+":function(o,e){throw new Error("Module build failed: SyntaxError: Unexpected string in JSON at position 3652\n    at JSON.parse (<anonymous>)\n    at Object.module.exports (C:\\xampp70\\htdocs\\youthleague.local\\node_modules\\json-loader\\index.js:4:49)")}});
+//# sourceMappingURL=1.981fbb239a54b3d4c799.js.map

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/documentation
+Host: youthleague.ru
+Crawl-delay: 3

@@ -1,0 +1,86 @@
+.nk-countdown {
+    display: flex;
+    width: 100%;
+
+    &.nk-countdown-center {
+        justify-content: center;
+    }
+    &.nk-countdown-right {
+        justify-content: flex-end;
+    }
+
+    .nk-hexagon {
+        position: relative;
+        width: 90px;
+        height: 51.96px;
+        margin: 28px 10px;
+        font-size: .9rem;
+        color: $color_headings;
+        text-align: center;
+        text-transform: uppercase;
+        background-color: rgba(#000, .35);
+        z-index: 0;
+
+        > span {
+            display: block;
+            font-family: $font_headings;
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-right: 45px solid transparent;
+            border-left: 45px solid transparent;
+            z-index: -1;
+        }
+        &::before {
+            top: -25px;
+            border-bottom: 25px solid rgba(#000, .35);
+        }
+        &::after {
+            bottom: -25px;
+            border-top: 25px solid rgba(#000, .35);
+        }
+
+        .nk-hexagon-inner {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            border-right: solid 4px $color_main_1;
+            border-left: solid 4px $color_main_1;
+
+            &::before,
+            &::after {
+                content: "";
+                position: absolute;
+                left: 9.1802px;
+                width: 63.64px;
+                height: 63.64px;
+                background-color: inherit;
+                transform: scaleY(.5774) rotate(-45deg);
+                z-index: 1;
+            }
+
+            &::before {
+                top: -31.8198px;
+                border-top: solid 5.6569px $color_main_1;
+                border-right: solid 5.6569px $color_main_1;
+            }
+
+            &::after {
+                bottom: -31.8198px;
+                border-bottom: solid 5.6569px $color_main_1;
+                border-left: solid 5.6569px $color_main_1;
+            }
+        }
+    }
+}

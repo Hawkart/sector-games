@@ -1,0 +1,148 @@
+/* Placeholders */
+::placeholder,
+.form-control::placeholder {
+    color: inherit;
+    opacity: .5;
+}
+
+/* Remove outline from focused buttons */
+button:focus {
+    outline: 0;
+}
+
+/* Ratings */
+.nk-rating {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    font-size: 1.2rem;
+    color: $color_main_1;
+
+    input {
+        display: none;
+
+        &:checked ~ label {
+            span:first-child {
+                display: none;
+            }
+            span:last-child {
+                display: block;
+            }
+        }
+    }
+    label {
+        position: relative;
+        display: block;
+        float: right;
+        padding-right: 2px;
+        padding-left: 2px;
+        margin: 0;
+        clear: none;
+        line-height: 1;
+        cursor: pointer;
+
+        span:first-child {
+            display: block;
+        }
+        span:last-child {
+            display: none;
+        }
+
+        &::after,
+        &::before {
+            content: none;
+            display: none;
+        }
+
+        &:hover,
+        &:hover ~ label {
+            span:first-child {
+                display: none;
+            }
+            span:last-child {
+                display: block;
+            }
+        }
+    }
+}
+
+/* From Style 1 */
+.form-control {
+    padding: 6.5px 10px;
+    font-size: 1em;
+    font-weight: 400;
+    color: $color_headings;
+    background-color: transparent;
+    border: 1px solid $color_dark_4;
+    border-radius: 0;
+    transition: .15s border-color;
+
+    &:focus,
+    &.focus {
+        color: $color_headings;
+        background-color: transparent;
+        border-color: $color_main_1;
+        box-shadow: none;
+    }
+}
+select.form-control:not([size]):not([multiple]) {
+    height: 32px;
+}
+select.form-control option {
+    color: #000;
+}
+@-moz-document url-prefix("") {
+    select.form-control option {
+        color: inherit;
+    }
+}
+select.form-control[multiple] option {
+    color: inherit;
+}
+
+/* fix for select on iOs devices */
+select.form-control {
+    background-color: rgba(0, 0, 0, .01);
+}
+
+/* From Style 2 */
+.nk-form-style-1 {
+    .form-control {
+        color: $color_dark_1;
+        background-color: $color_headings;
+        border-color: $color_headings;
+
+        &:focus,
+        &.focus {
+            background-color: $color_headings;
+            border-color: $color_main_1;
+        }
+    }
+}
+
+/* Validation */
+div.nk-error {
+    padding: 0;
+    margin: 0;
+    font-size: .8em;
+    font-weight: 400;
+    color: $color_danger;
+    background-color: transparent;
+    z-index: 1;
+}
+.form-control.nk-error,
+.nk-form-style-1 .form-control.nk-error {
+    background-color: rgba($color_danger, .4);
+    border-color: $color_danger;
+}
+
+.nk-form-response-success {
+    display: none;
+    margin: 15px 0;
+    color: $color_success;
+}
+.nk-form-response-error {
+    display: none;
+    margin: 15px 0;
+    color: $color_danger;
+}
