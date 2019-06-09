@@ -1,5 +1,5 @@
 {
-	"authHost": "https://sparta.games",
+	"authHost": "http://games.local",
 	"authEndpoint": "/broadcasting/auth",
 	"clients": [],
 	"database": "redis",
@@ -9,13 +9,13 @@
 			"databasePath": "/database/laravel-echo-server.sqlite"
 		}
 	},
-	"devMode": false,
+	"devMode": true,
 	"host": null,
 	"port": "6002",
-	"protocol": "https",
+	"protocol": "http",
 	"socketio": {},
-	"sslCertPath": "/home/bitrix/conf/web/ssl.youthleague.ru.crt",
-	"sslKeyPath": "/home/bitrix/conf/web/ssl.youthleague.ru.key",
+	"sslCertPath": "",
+	"sslKeyPath": "",
 	"sslCertChainPath": "",
 	"sslPassphrase": "",
 	"apiOriginAllow": {

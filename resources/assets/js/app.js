@@ -15,7 +15,25 @@ Vue.prototype.moment = moment
 import VueCollapse from 'vue2-collapse'
 Vue.use(VueCollapse)
 
+import SocialSharing from 'vue-social-sharing'
+Vue.use(SocialSharing)
+
 window.$ = window.jQuery = require('jquery');
+
+import Cookies from 'js-cookie'
+import Echo from "laravel-echo"
+window.io = require('socket.io-client');
+
+window.Echo = new Echo({
+    broadcaster: 'socket.io',
+    host: window.location.hostname + ':6002',
+    auth:
+        {
+            headers: {
+                Authorization: 'Bearer ' + Cookies.get('token'),
+            },
+        }
+});
 
 /**
  **  Filters
@@ -120,18 +138,22 @@ Vue.mixin({
         dateConvertUTC(edate, k)
         {
             var d = new Date();
-            var n = d.getTimezoneOffset();
+            var n = -180;//d.getTimezoneOffset(); //MSK
             var milliseconds;
             var newDate;
-
-            if(k<0){ k = -2; }else{ k = 0; }
-
-            //for working in all browsers!!!!!!
             edate = edate.replace(" ", "T");
-            milliseconds = new Date(edate).getTime() + (k * n * 60 * 1000);
 
+
+            /*if(k<0){ k = -2; }else{ k = 0; }
+            //for working in all browsers!!!!!!
+            milliseconds = new Date(edate).getTime() + (k * n * 60 * 1000);
             newDate = new Date(milliseconds).toISOString();
-            newDate = newDate.substr(0,10)+" "+newDate.substr(11,8);
+            newDate = newDate.substr(0,10)+" "+newDate.substr(11,8);*/
+
+            if(k<0){ k = -1; }else{ k = 0; }
+            var newDate = this.moment.utc(edate).add(k*n/60, 'hours').format('YYYY-MM-DD HH:mm:ss');
+
+            //console.log(edate+ "   "+newDate+"   "+ (k*n/60) +"    "+newDate2);
 
             return newDate;
         },

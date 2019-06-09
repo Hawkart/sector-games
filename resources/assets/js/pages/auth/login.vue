@@ -3,6 +3,9 @@
     <div class="col-lg-8 m-auto">
       <card :title="$t('login')">
         <form @submit.prevent="login" @keydown="form.onKeydown($event)">
+
+          <alert-error :form="form"></alert-error>
+
           <!-- Email -->
           <div class="form-group row">
             <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
@@ -37,18 +40,19 @@
 
           <div class="form-group row">
             <div class="col-md-7 offset-md-3 d-flex">
+
               <!-- Submit Button -->
               <v-button :loading="form.busy">
                 {{ $t('login') }}
               </v-button>
 
-              <div class="ml-auto">
+              <!--<div class="ml-auto">
                 <login-with-social provider="vkontakte" ic="vk"/>
                 <login-with-social provider="steam" ic="steam"/>
-                <!--<login-with-social provider="facebook" ic="facebook"/>
+                <login-with-social provider="facebook" ic="facebook"/>
                 <login-with-social provider="twitch" ic="twitch"/>
-                <login-with-social provider="google" ic="google"/>-->
-              </div>
+                <login-with-social provider="google" ic="google"/>
+              </div>-->
             </div>
           </div>
 

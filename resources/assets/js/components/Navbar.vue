@@ -1,23 +1,20 @@
 <template>
   <div>
 
-    <div class="nk-info-box warning p-0 pt-25 pb-15 mb-20" v-if="show_cookie_string==true">
+    <!--<div class="nk-info-box warning p-0 pt-25 pb-15 mb-20" v-if="show_cookie_string==true">
         <div class="container">
             <div class="nk-info-box-close nk-info-box-close-btn mr-20 mt-0" @click="setCookie">
               <i class="ion-close-round"></i>
             </div>
             <em>{{$t("cookies_text")}} <a href="#">{{$t("read_more")}}</a></em>
         </div>
-    </div>
+    </div>-->
 
     <header class="nk-header nk-header-opaque">
       <!-- START: Top Contacts -->
       <div class="nk-contacts-top">
         <div class="container">
           <div class="nk-contacts-left">
-              <socials-group class="nk-social-links"></socials-group>
-          </div>
-          <div class="nk-contacts-left ml-20">
             <ul class="navbar-nav">
               <locale-dropdown/>
             </ul>
@@ -25,7 +22,12 @@
           <div class="nk-contacts-right">
 
             <ul class="nk-contacts-icons">
-              <!-- Authenticated -->
+              <!--<li v-if="authenticated">
+                <a href="#">
+                  <span class="fa fa-bell"></span>
+                  <span class="nk-badge">27</span>
+                </a>
+              </li>-->
               <li v-if="authenticated" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle"
                    href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,7 +54,7 @@
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link :to="{ name: 'register' }" class="nav-link" active-class="active">
+                  <router-link :to="{ name: 'register' }" class="nav-link nk-btn nk-btn-rounded nk-btn-color-main-1 text-white text-trans-none" active-class="active">
                     {{ $t('register') }}
                   </router-link>
                 </li>
@@ -69,13 +71,16 @@
           <div class="nk-nav-table">
 
             <router-link :to="{ name: 'welcome' }" class="nk-nav-logo">
-              <img :src="appLogo" :alt="appName" width="199">
+              <img :src="appLogo_2" :alt="appName" width="200">
             </router-link>
 
             <ul class="nk-nav nk-nav-right d-none d-lg-table-cell">
 
-              <li>
+              <!--<li>
                 <router-link :to="{ name: 'tournament_2018' }">{{ $t('school_tournament_2018') }}</router-link>
+              </li>-->
+              <li>
+                <router-link :to="{ name: 'tournaments' }">{{ $t('tournaments') }}</router-link>
               </li>
               <li>
                 <router-link :to="{ name: 'teams' }">{{ $t('teams') }}</router-link>
@@ -83,7 +88,12 @@
               <li>
                 <router-link :to="{ name: 'players' }">{{ $t('players') }}</router-link>
               </li>
-
+              <li>
+                <router-link :to="{ name: 'faq' }">{{ $t('faq') }}</router-link>
+              </li>
+              <!--<li>
+                <router-link :to="{ name: 'matches' }">{{ $t('matches') }}</router-link>
+              </li>-->
             </ul>
             <ul class="nk-nav nk-nav-right nk-nav-icons">
 
@@ -136,6 +146,7 @@
         data: () => ({
             appName: window.config.appName,
             appLogo: window.config.appLogo,
+            appLogo_2: window.config.appLogo_2,
             show_cookie_string: false,
 			showMobileMenu: false
         }),

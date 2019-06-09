@@ -1,7 +1,7 @@
 .nk-footer {
     position: relative;
     overflow: hidden;
-    color: #eee;
+    color: #fff;
     background-color: rgba(darken($color_dark_1, 3%), .8);
     z-index: 1;
 }
@@ -73,8 +73,6 @@
 }
 
 .nk-copyright {
-    background-color: #000;
-
     .container {
         display: flex;
         flex-wrap: wrap;

@@ -70,7 +70,7 @@ return [
         'ru' => 'RU'
     ],
 
-    'api_host' => env('APP_API_HOST', 'https://sparta.games'),
+    'api_host' =>  env('APP_API_HOST', 'https://sparta.games'),
 
     /*
     |--------------------------------------------------------------------------

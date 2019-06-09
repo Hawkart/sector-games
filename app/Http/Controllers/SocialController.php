@@ -30,7 +30,7 @@ class SocialController extends Controller
         }else{
             \Session::put('auth_token', '');
         }
-        
+
         if($provider=="google")
         {
             $url = Socialite::with($provider)

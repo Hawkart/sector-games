@@ -1,6 +1,8 @@
 const path = require('path')
-const { mix } = require('laravel-mix')
+const mix = require('laravel-mix')
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+
+mix.config.vue.esModule = true
 
 mix
     .js('resources/assets/js/app.js', 'public/js')
@@ -14,13 +16,8 @@ if (mix.inProduction) {
   
     mix.extract([
         'vue',
-        'vue-carousel',
-        'vue-clipboards',
         'vue-core-image-upload',
-        'vue-fullcalendar',
-        'vue-js-modal',
-        'vue-social-sharing',
-        'vue-sticky',
+        'moment',
         'vue2-timepicker',
         'zxcvbn',
         'vform',
@@ -35,7 +32,9 @@ if (mix.inProduction) {
         'select2',
         'vue-router',
         'sweetalert2',
-        'vuex-router-sync'
+        'vuex-router-sync',
+        '@fortawesome/fontawesome',
+        '@fortawesome/vue-fontawesome'
     ])
 }
 

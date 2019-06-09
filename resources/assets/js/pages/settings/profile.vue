@@ -26,6 +26,14 @@
       <alert-success :form="form" :message="$t('info_updated')"/>
 
       <div class="form-group row">
+        <label class="col-md-3 col-form-label text-md-right">{{ $t('nickname') }}</label>
+        <div class="col-md-7">
+          <input v-model="form.nickname" :class="{ 'is-invalid': form.errors.has('nickname') }" class="form-control" type="text" name="nickname">
+          <has-error :form="form" field="nickname"/>
+        </div>
+      </div>
+
+      <div class="form-group row">
         <label class="col-md-3 col-form-label text-md-right">{{ $t('name') }}</label>
         <div class="col-md-7">
           <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" class="form-control" type="text" name="name">
@@ -52,7 +60,7 @@
       <div class="form-group row">
         <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
         <div class="col-md-7">
-          <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
+          <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email" disabled>
           <has-error :form="form" field="email" />
         </div>
       </div>
@@ -69,11 +77,15 @@
       </div>
 
       <!-- Submit Button -->
-      <div class="form-group row">
+      <!--<div class="form-group row">
         <div class="col-md-9 ml-md-auto">
           <v-button :loading="form.busy">{{ $t('update') }}</v-button>
+
+          <login-with-social provider="vkontakte" ic="vk" :text="$t('connect_account')" v-if="!checkSocialConnected('vkontakte')"/>
+          <login-with-social provider="steam" ic="steam" :text="$t('connect_account')" v-if="!checkSocialConnected('steam')"/>
         </div>
-      </div>
+      </div>-->
+
     </form>
   </card>
 
@@ -117,6 +129,7 @@ import Cookies from 'js-cookie'
 import VueCoreImageUpload from 'vue-core-image-upload'
 import DatePicker from 'vue2-datepicker'
 import axios from 'axios'
+import LoginWithSocial from '~/components/LoginWithSocial'
 
 export default {
   scrollToTop: false,
@@ -124,14 +137,14 @@ export default {
   metaInfo () {
     return { title: this.$t('settings') }
   },
-
   data: () => ({
     form: new Form({
       name: '',
       email: '',
       date_birth: '',
       last_name: '',
-      timezone: ''
+      timezone: '',
+      nickname: ''
     }),
     form_p: new Form({
         password: '',
@@ -141,7 +154,8 @@ export default {
         Authorization: 'Bearer ' + Cookies.get('token')
     },
     uploadUrl: window.config.apiHost+'/api/users/avatar',
-    timezones: []
+    timezones: [],
+    user_social_accounts:[],
   }),
 
   computed: mapGetters({
@@ -151,7 +165,8 @@ export default {
 
   components: {
       'vue-core-image-upload': VueCoreImageUpload,
-      DatePicker
+      DatePicker,
+      LoginWithSocial
   },
 
   created () {
@@ -168,6 +183,7 @@ export default {
 
   mounted() {
       this.getTimezones();
+      this.getUserSocialAccounts();
   },
 
   methods: {
@@ -195,6 +211,29 @@ export default {
     imageuploaded(response) {
         this.user.avatar = response.avatar;
     },
+
+      getUserSocialAccounts()
+      {
+          axios.get('/api/user_social_accounts?user_id='+this.user.id).then((response) => {
+              this.$set(this, 'user_social_accounts', response.data);
+          });
+      },
+      checkSocialConnected(provider)
+      {
+          var connected = false;
+          if(this.user_social_accounts.length>0)
+          {
+              this.user_social_accounts.forEach(function(account)
+              {
+                  if(account.provider==provider)
+                  {
+                      connected = true;
+                  }
+              });
+          }
+
+          return connected;
+      },
   }
 }
 </script>

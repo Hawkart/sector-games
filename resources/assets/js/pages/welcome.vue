@@ -7,35 +7,37 @@
         <div class="row">
             <div class="col-lg-12">
             <flickity ref="flickity" :options="flickityOptions">
-                <div class="carousel-cell">
-                    <h3>Впиши своё имя в историю <br/>российского кибеспорта!</h3>
+                <div class="carousel-cell" style="background-image: url('/images/slider/slide_1.png')">
+                    <h3>Впиши своё имя в историю <br/>российского киберспорта!</h3>
                     <h4 class="text-main-1" v-if="daysTo>0">Регистрация начнется через <strong>{{daysTo}}</strong> дня </h4>
-                    <h4 v-else>Регистрация открыта </h4>
+                    <h4 class="text-main-1" v-else>
+                        <router-link :to="{ name: 'register' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white">
+                        зарегистрируйтесь</router-link>
+                    </h4>
                 </div>
-                <div class="carousel-cell">
+                <div class="carousel-cell" style="background-image: url('/images/slider/slide_2.png')">
                     <h3>Участвуй во втором всероссийском<br/> школьном турнире DOTA2!</h3>
                     <h4 class="text-main-1" v-if="daysTo>0">Регистрация начнется через <strong>{{daysTo}}</strong> дня </h4>
-                    <h4 v-else>Регистрация открыта </h4>
+                    <h4 class="text-main-1" v-else>
+                        <router-link :to="{ name: 'register' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white">
+                            зарегистрируйтесь</router-link>
+                    </h4>
                 </div>
-                <div class="carousel-cell">
+                <div class="carousel-cell"  style="background-image: url('/images/slider/slide_3.png')">
                     <h3>Собери свою команду и стань<br/> чемпионом школы!</h3>
                     <h4 class="text-main-1" v-if="daysTo>0">Регистрация начнется через <strong>{{daysTo}}</strong> дня </h4>
-                    <h4 v-else>Регистрация открыта </h4>
+                    <h4 class="text-main-1" v-else>
+                        <router-link :to="{ name: 'register' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white">
+                            зарегистрируйтесь</router-link>
+                    </h4>
                 </div>
-                <div class="carousel-cell">
-                    <h3>Победителям областных этапов<br/> ценные подарки от спонсоров!</h3>
-                    <h4 class="text-main-1" v-if="daysTo>0">Регистрация начнется через <strong>{{daysTo}}</strong> дня </h4>
-                    <h4 v-else>Регистрация открыта </h4>
-                </div>
-                <div class="carousel-cell">
-                    <h3>Победителям турнира кибеспортивные <br/>стипендии в ведущих ВУЗах России!</h3>
-                    <h4 class="text-main-1" v-if="daysTo>0">Регистрация начнется через <strong>{{daysTo}}</strong> дня </h4>
-                    <h4 v-else>Регистрация открыта </h4>
-                </div>
-                <div class="carousel-cell">
+                <div class="carousel-cell"  style="background-image: url('/images/slider/slide_6.png')">
                     <h3>Стань звездой киберспорта - попади<br/> в финал Всероссийского турнира!</h3>
                     <h4 class="text-main-1" v-if="daysTo>0">Регистрация начнется через <strong>{{daysTo}}</strong> дня </h4>
-                    <h4 v-else>Регистрация открыта </h4>
+                    <h4 class="text-main-1" v-else>
+                        <router-link :to="{ name: 'register' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white">
+                            зарегистрируйтесь</router-link>
+                    </h4>
                 </div>
             </flickity>
             </div>
@@ -186,40 +188,55 @@ export default {
 	  getPlayersCount()
         {
             var query = this.ArrayToUrl({
-                "active" : 1,
+                //"active" : 1,
                 'type' : 'player',
-                'free_player' : 1,
 				'institution_id-not': "null",
-                "_limit" : 0,
+                "_limit" : 1,
                 '_fields' : 'id'
             });
 
             axios.get('/api/users?'+query).then((response) => {
-                this.$set(this, 'countPlayers', response.data.length);
+                this.$set(this, 'countPlayers', response.data.total);
             });
+
+            /*var countPlayers = 52;
+            var d2 = new Date('Jun 25, 2018');
+            var d3 = new Date();
+            var ds = (d3.getTime()-d2.getTime()) / (1000*60*60*24);
+            ds = Math.round(ds);
+            his.$set(this, 'countPlayers', countPlayers*(1+ds));
+            */
         },
         getTeamsCount()
         {
             var query = this.ArrayToUrl({
-                "status" : 1,
+                "status-not" : 2,
 				"institution_id-not": "null",
-                "_limit" : 0,
+                "_limit" : 1,
                 '_fields' : 'id'
             });
 
             axios.get('/api/teams?'+query).then((response) => {
-                this.$set(this, 'countTeams', response.data.length);
+                this.$set(this, 'countTeams', response.data.total)
             });
+
+            /*var countTeams = 7;
+            var d2 = new Date('Jun 25, 2018');
+            var d3 = new Date();
+            var ds = (d3.getTime()-d2.getTime()) / (1000*60*60*24);
+            ds = Math.round(ds);
+
+            this.$set(this, 'countTeams', countTeams*(1+ds));*/
         },
         getSchoolsCount()
         {
             var query = this.ArrayToUrl({
-                "_limit" : 0,
+                "_limit" : 1,
                 '_fields' : 'id'
             });
 
             axios.get('/api/institutions?'+query).then((response) => {
-                this.$set(this, 'countSchools', response.data.length);
+                this.$set(this, 'countSchools', response.data.total);
             });
         }
   }

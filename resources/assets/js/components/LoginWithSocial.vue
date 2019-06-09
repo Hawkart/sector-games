@@ -1,11 +1,12 @@
 <template>
-    <button :class="'nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-info p-9 ml-5 nk-social-'+ic" type="button" @click="login">
+    <button :class="'nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-info p-9 ml-5 btn-'+ic+' nk-social-'+ic" type="button" @click="login">
         {{ text }}
         <fa :icon="['fab', ic]"/>
     </button>
 </template>
 
 <script>
+    import Cookies from 'js-cookie'
     export default {
         name: 'LoginWithSocial',
 
@@ -29,7 +30,7 @@
                     provider: this.provider
                 })*/
 
-                var url = '/social/'+this.provider;
+                var url = '/social/'+this.provider+"?token="+Cookies.get('token');
                 openWindow(url, this.$t('login'))
             },
 

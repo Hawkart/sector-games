@@ -1,10 +1,10 @@
 <template>
     <div>
-        <card v-if="authenticated" :title="$t('teams')">
+        <card :title="$t('teams')">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					
-					<template v-if="user.institution_id===null">
+					<!--<template v-if="user.institution_id===null">
 						<p class="text-white">
 							Для просмотра команд вы должны 
 							<router-link :to="{ name: 'settings.school' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white f07em">
@@ -20,12 +20,13 @@
 							создайте
 							</router-link> команду.
 						</p>
-					</template>
-					
+					</template>-->
+
                     <table class="nk-table" v-if="teams!==null && teams.length>0">
                         <tbody>
                         <tr>
                             <th>{{$t('title')}}</th>
+                            <th>{{$t('region')}}</th>
                             <th>{{$t('players')}}</th>
                             <th>{{$t('game')}}</th>
                             <th>{{$t('count_matches')}}</th>
@@ -39,6 +40,12 @@
                                     <img :src="getImageLink(team.image, 'avatar_team')" class="w-50px mr-10" :alt="team.title" />
                                     <span>{{ team.title}}</span>
                                 </router-link>
+                            </td>
+                            <td>
+                                <template v-if="team.institution_id>0">
+                                    {{team.institution.location.parent.title}},
+                                    {{team.institution.location.title}}
+                                </template>
                             </td>
                             <td class="text-center"><router-link  :to="{ name: 'team.detail.players', params: { slug: team.slug }}">{{ team.users.length}}</router-link> / {{ team.quantity}}</td>
                             <td class="text-center" v-if="team.game!==null">
@@ -67,12 +74,12 @@
             </div>
         </card>
 
-        <card v-else :title="$t('teams')">
+        <!--<card v-else :title="$t('teams')">
             <p class="text-white">
                 Для того чтобы увидеть список команд, <router-link :to="{ name: 'register' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white f07em">
                 зарегистрируйтесь</router-link> или <router-link :to="{ name: 'login' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white f07em">авторизуйтесь</router-link>, если у вас есть аккаунт.
             </p>
-        </card>
+        </card>-->
     </div>
 </template>
 
@@ -95,7 +102,10 @@
             })
         },
         mounted() {
-			if(this.authenticated && this.user.institution_id!=null)
+
+            this.getVueItems();
+
+			/*if(this.authenticated && this.user.institution_id!=null)
 			{
 				this.getVueItems();
 				this.getGames();
@@ -152,7 +162,7 @@
 					};
 
 				});
-			}
+			}*/
         },
         data : function() {
             return {
@@ -167,26 +177,31 @@
                     {id:1, title: 'accepted'}
                 ],
                 game_id: this.$route.query.game_id || '',
-                country_id: this.$route.query.users_country_id || '',
+                country_id: this.$route.query.users_country_id || ''/*,
+                groups: [
+                    {teams: [146, 131, 181, 2, 73], title: "Восточная конференция"},
+                    {teams: [252, 167, 109, 110, 220], title: "Западная конференция"}
+                ]*/
             }
         },
         methods : {
             getVueItems: function(){
 
                 var queryStartParams = {
+                    //'status': 1,
                     'page' : 1,
                     '_limit' : 12,
-                    '_with' : 'game,fights,users',
-                    "_sort" : '-id'
+                    '_with' : 'game,fights,users,institution.location,institution.location.parent',
+                    "_sort" : '-count_wins'
                 };
 
-                if(this.authenticated && this.user.type!='investor')
+                /*if(this.authenticated && this.user.type!='investor')
                 {
                     queryStartParams['game_id'] = this.user.game_id;
 					if(this.user.institution_id!==null)
 						queryStartParams['institution_id'] = this.user.institution_id;
 					queryStartParams['institution_id-not'] = 'null';
-                }
+                }*/
 
                 var query = this.UrlParamsMerge(queryStartParams);
 

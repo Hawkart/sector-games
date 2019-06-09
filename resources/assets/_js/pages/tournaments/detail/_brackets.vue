@@ -15,11 +15,6 @@
                                     <img :src="getImageLink(cell.team_1.image, 'avatar_team')" class="img-responsive team-image w-30" :alt="cell.team_1.title" />
                                     <span>{{cell.team_1.title}}</span>
                                 </router-link>
-                                <!--<a class="vm-title" v-else>
-                                    <img :src="getImageLink(null, 'avatar_team')" class="img-responsive team-image w-30" />
-                                    <span style="float: none;">&nbsp</span>
-                                </a>-->
-                                
                                 <span v-if="cell.team_1!=null && cell.team_1.id!=null" class="score">{{cell.score[0]}}</span>
                                 <span v-else>&nbsp;</span>
                             </li>
@@ -29,11 +24,6 @@
                                     <img :src="getImageLink(cell.team_2.image, 'avatar_team')" class="img-responsive team-image w-30" :alt="cell.team_2.title" />
                                     <span>{{cell.team_2.title}}</span>
                                 </router-link>
-                                <!--<a class="vm-title" v-else>
-                                    <img :src="getImageLink(null, 'avatar_team')" class="img-responsive team-image w-30" />
-                                    <span style="float: none;">&nbsp</span>
-                                </a>-->
-                                
                                 <span v-if="cell.team_2!=null && cell.team_2.id!=null" class="score">{{cell.score[1]}}</span>
                                 <span v-else>&nbsp;</span>
                             </li>

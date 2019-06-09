@@ -67,6 +67,9 @@
                         <option v-for="char in chars" v-bind:value="char">
                             {{ char }}
                         </option>
+                        <option v-for="cl in numberRange(1, 10)" v-bind:value="cl">
+                            {{ cl }}
+                        </option>
                     </select>
                     <has-error :form="form" field="char"/>
                 </div>
@@ -185,7 +188,7 @@
             },
             async getUserSchools()
             {
-                await axios.get('/api/institution_user?user_id='+this.user.id+'&_with=institution&_sort=-id').then((response) => {
+                await axios.get('/api/institution_user?user_id='+this.user.id+'&_with=institution&_sort=-created_at').then((response) => {
                     this.$set(this, 'institution', response.data[0]);
                     this.form.institution_id = this.institution.institution.id;
                     this.form.class = this.institution.number;
@@ -274,7 +277,7 @@
                                 return {
                                     _sort: "title",
                                     parent_id: parent_id,
-                                    _q: params.term, // search term
+                                    "title-lk": params.term+"*", // search term
                                     page: params.page || 1,
                                     _limit: 30
                                 };

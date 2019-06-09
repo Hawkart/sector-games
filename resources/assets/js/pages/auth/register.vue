@@ -4,6 +4,8 @@
       <card :title="$t('register')">
         <form @submit.prevent="register" @keydown="form.onKeydown($event)" v-if="!cofirmation_sent">
 
+          <alert-error :form="form"></alert-error>
+
           <div class="form-group row" v-if="countries!==null">
             <label class="col-md-3 col-form-label text-md-right">{{ $t('country') }}</label>
             <div class="col-md-7">
@@ -65,6 +67,9 @@
                 <option v-for="char in chars" v-bind:value="char">
                   {{ char }}
                 </option>
+                <option v-for="cl in numberRange(1, 10)" v-bind:value="cl">
+                  {{ cl }}
+                </option>
               </select>
               <has-error :form="form" field="char"/>
             </div>
@@ -114,6 +119,18 @@
             </div>
           </div>-->
 
+          <!-- Remember Me -->
+          <div class="form-group row">
+            <div class="col-md-3"/>
+            <div class="col-md-7 d-flex">
+              <checkbox v-model="form.agree" name="agree" :class="{ 'is-invalid': form.errors.has('agree') }">
+                {{ $t('agree') }}
+              </checkbox>
+
+             <has-error :form="form" field="agree"/>
+            </div>
+          </div>
+
           <div class="form-group row">
             <div class="col-md-7 offset-md-3 d-flex">
               <!-- Submit Button -->
@@ -121,20 +138,16 @@
                 {{ $t('register') }}
               </v-button>
 
-              <div class="ml-auto">
+              <!--<div class="ml-auto">
                 <login-with-social provider="vkontakte" ic="vk"/>
                 <login-with-social provider="steam" ic="steam"/>
-                <!--<login-with-social provider="facebook" ic="facebook"/>
+                <login-with-social provider="facebook" ic="facebook"/>
                 <login-with-social provider="twitch" ic="twitch"/>
-                <login-with-social provider="google" ic="google"/>-->
-              </div>
+                <login-with-social provider="google" ic="google"/>
+              </div>-->
             </div>
           </div>
         </form>
-
-        <div v-else>
-          <p>{{ $t('confirm_sent_text') }}</p>
-        </div>
       </card>
     </div>
   </div>
@@ -172,7 +185,8 @@ export default {
       char: '',
       game_id: '',
       game_roles: [1],
-      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone!==undefined ? Intl.DateTimeFormat().resolvedOptions().timeZone : ""
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone!==undefined ? Intl.DateTimeFormat().resolvedOptions().timeZone : "",
+      agree: true
     }),
       country_id: null,
       countries: null,
@@ -266,7 +280,7 @@ export default {
       //this.sendVerifyEmail();
 
       // Log in the user.
-      /*const { data: { token } } = await this.form.post('/api/login')
+      const { data: { token } } = await this.form.post('/api/login')
 
       // Save the token.
       this.$store.dispatch('auth/saveToken', { token })
@@ -274,8 +288,8 @@ export default {
       // Update the user.
       await this.$store.dispatch('auth/updateUser', { user: data })
 
-      // Redirect home.
-      this.$router.push({ name: 'home' })*/
+      // Redirect to instruction.
+      this.$router.push({ name: 'settings.instruction' })
     },
     async getDota()
     {
@@ -346,7 +360,7 @@ export default {
                         return {
                             _sort: "title",
                             parent_id: parent_id,
-                            _q: params.term, // search term
+                            "title-lk": params.term+"*", // search term
                             page: params.page || 1,
                             _limit: 30
                         };

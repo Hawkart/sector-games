@@ -384,6 +384,7 @@ class User extends VoyagerUser implements AuthenticatableContract, CanResetPassw
         ];
 
         $user = User::where('email', $email)->where("confirmed", 1)->first();
+
         if($user)
             return $user;
 

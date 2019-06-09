@@ -114,7 +114,7 @@ class SocialAccountService
                     break;
                 case "vkontakte":
                     $schools = $providerUser->user['schools'];
-                    /*if(count($schools)>0)
+                    if(count($schools)>0)
                     {
                         $school = $schools[0];
                         $institutions = Institution::where("vk_id", $school['id'])->get();
@@ -126,12 +126,12 @@ class SocialAccountService
                         if($school['year_graduated']<date('Y') || ($school['year_graduated']==date('Y') && intval(date('m'))<9))
                         {
                             $years = 11-$school['year_graduated']+date('Y');
-                            if(intval(date('m'))>7)
+                            if(intval(date('m'))>8)
                             {
                                 $years++;
                             }
 
-                            if($years>=8 && $years<=11)
+                            if($years>=9 && $years<=11)
                             {
                                 $iu = new InstitutionUser([
                                     'institution_id' => $institution->id,
@@ -143,7 +143,7 @@ class SocialAccountService
                             }
 
                         }
-                    }*/
+                    }
                     break;
             }
 

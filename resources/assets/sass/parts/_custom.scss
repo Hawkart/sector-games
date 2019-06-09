@@ -74,7 +74,7 @@
 }
 
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
-  background-color: #dd163b
+  background-color: #337ab7
 }
 
 .p-9{
@@ -149,4 +149,577 @@
 	.carousel-cell h3{
 		margin-top: 110px;
 	}
+}
+
+.text-trans-none{
+  text-transform: none !important;
+}
+
+.nk-navbar{
+  padding: 20px 0;
+}
+
+.is-invalid .custom-control-label{
+  color: #dc3545;
+}
+
+.custom-control.is-invalid~.invalid-feedback{
+  display: block;
+}
+
+.form-control:disabled, .form-control[readonly]{
+  background-color: #2d2e31;
+}
+
+.footer-menu a{
+  display: block;
+  margin-bottom: 7px;
+}
+
+.w-84px{
+  width: 84px !important;
+}
+
+/*SOCIAL*/
+.btn-fb{
+  background: #3B5998;
+  border-color: #4267b2;
+}
+.btn-fb:hover{background-color:#2d4373;}
+.btn-vk{
+  background: #587ea3;
+}
+.btn-vk:hover{background-color:#466482}
+.btn-telegram{background-color:#2AA5E0;}
+.btn-telegram:hover{background-color:#1b88bc;}
+
+
+/*Chat UI*/
+.chat-search {
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.chat-search .input-group {
+  width: 100%;
+}
+.chat-search .input-group .form-control, .chat-search .input-group .select2-container--default .select2-selection--single .select2-selection__rendered, .select2-container--default .select2-selection--single .chat-search .input-group .select2-selection__rendered,
+.chat-search .input-group .select2-container--default .select2-selection--single,
+.select2-container--default .chat-search .input-group .select2-selection--single, .chat-search .input-group .select2-selection.select2-selection--multiple, .chat-search .input-group .wizard .content > .body input, .wizard .content > .body .chat-search .input-group input, .chat-search .input-group .mce-floatpanel .mce-textbox, .mce-floatpanel .chat-search .input-group .mce-textbox, .chat-search .input-group .mce-floatpanel .mce-btn, .mce-floatpanel .chat-search .input-group .mce-btn, .chat-search .input-group .dataTables_wrapper .dataTables_filter input, .dataTables_wrapper .dataTables_filter .chat-search .input-group input, .chat-search .input-group .dataTables_wrapper .dataTables_length select, .dataTables_wrapper .dataTables_length .chat-search .input-group select, .chat-search .input-group .jsgrid-cell input, .jsgrid-cell .chat-search .input-group input, .chat-search .input-group .jsgrid-cell select, .jsgrid-cell .chat-search .input-group select, .chat-search .input-group .tablesaw-bar .btn-select select, .tablesaw-bar .btn-select .chat-search .input-group select, .chat-search .input-group .dd-handle, .chat-search .input-group .dd3-content {
+  height: 36px;
+  border-radius: 50px;
+  padding-right: 30px;
+  background: #fff;
+  color: #212121;
+  border: 1px solid rgba(33, 33, 33, 0.12);
+}
+.chat-search .input-group .form-control:focus, .chat-search .input-group .select2-container--default .select2-selection--single .select2-selection__rendered:focus, .select2-container--default .select2-selection--single .chat-search .input-group .select2-selection__rendered:focus,
+.chat-search .input-group .select2-container--default .select2-selection--single:focus,
+.select2-container--default .chat-search .input-group .select2-selection--single:focus, .chat-search .input-group .select2-selection.select2-selection--multiple:focus, .chat-search .input-group .wizard .content > .body input:focus, .wizard .content > .body .chat-search .input-group input:focus, .chat-search .input-group .mce-floatpanel .mce-textbox:focus, .mce-floatpanel .chat-search .input-group .mce-textbox:focus, .chat-search .input-group .mce-floatpanel .mce-btn:focus, .mce-floatpanel .chat-search .input-group .mce-btn:focus, .chat-search .input-group .dataTables_wrapper .dataTables_filter input:focus, .dataTables_wrapper .dataTables_filter .chat-search .input-group input:focus, .chat-search .input-group .dataTables_wrapper .dataTables_length select:focus, .dataTables_wrapper .dataTables_length .chat-search .input-group select:focus, .chat-search .input-group .jsgrid-cell input:focus, .jsgrid-cell .chat-search .input-group input:focus, .chat-search .input-group .jsgrid-cell select:focus, .jsgrid-cell .chat-search .input-group select:focus, .chat-search .input-group .tablesaw-bar .btn-select select:focus, .tablesaw-bar .btn-select .chat-search .input-group select:focus, .chat-search .input-group .dd-handle:focus, .chat-search .input-group .dd3-content:focus {
+  border: 1px solid rgba(33, 33, 33, 0.3);
+}
+.chat-search .input-group .input-group-btn {
+  position: absolute;
+  right: 22px;
+  top: 8px;
+  z-index: 4;
+}
+.chat-search .input-group .input-group-btn > .btn, .chat-search .input-group .wizard > .actions .disabled .input-group-btn > a, .chat-search .input-group .wizard > .actions .input-group-btn > a, .wizard > .actions .chat-search .input-group .input-group-btn > a, .chat-search .input-group .dt-buttons .input-group-btn > .dt-button, .dt-buttons .chat-search .input-group .input-group-btn > .dt-button, .chat-search .input-group .tablesaw-sortable th.tablesaw-sortable-head .input-group-btn > button, .tablesaw-sortable th.tablesaw-sortable-head .chat-search .input-group .input-group-btn > button, .chat-search .input-group .sweet-alert .input-group-btn > button, .sweet-alert .chat-search .input-group .input-group-btn > button, .chat-search .input-group .owl-theme .owl-nav .input-group-btn > [class*="owl-"], .owl-theme .owl-nav .chat-search .input-group .input-group-btn > [class*="owl-"], .chat-search .input-group .input-group-btn > button.fc-agendaDay-button.fc-state-default.fc-corner-right,
+.chat-search .input-group .input-group-btn > button.fc-month-button.fc-state-default.fc-corner-left,
+.chat-search .input-group .input-group-btn > button.fc-agendaWeek-button, .chat-search .input-group .input-group-btn > .fc-prev-button, .chat-search .input-group .input-group-btn > .fc-next-button, .chat-search .input-group .input-group-btn > .fc-today-button {
+  background: transparent none repeat scroll 0 0;
+  border: medium none;
+  padding: 0;
+}
+.chat-search .input-group .input-group-btn > .btn i, .chat-search .input-group .wizard > .actions .input-group-btn > a i, .wizard > .actions .chat-search .input-group .input-group-btn > a i, .chat-search .input-group .dt-buttons .input-group-btn > .dt-button i, .dt-buttons .chat-search .input-group .input-group-btn > .dt-button i, .chat-search .input-group .tablesaw-sortable th.tablesaw-sortable-head .input-group-btn > button i, .tablesaw-sortable th.tablesaw-sortable-head .chat-search .input-group .input-group-btn > button i, .chat-search .input-group .sweet-alert .input-group-btn > button i, .sweet-alert .chat-search .input-group .input-group-btn > button i, .chat-search .input-group .owl-theme .owl-nav .input-group-btn > [class*="owl-"] i, .owl-theme .owl-nav .chat-search .input-group .input-group-btn > [class*="owl-"] i, .chat-search .input-group .input-group-btn > button.fc-agendaDay-button.fc-state-default.fc-corner-right i,
+.chat-search .input-group .input-group-btn > button.fc-month-button.fc-state-default.fc-corner-left i,
+.chat-search .input-group .input-group-btn > button.fc-agendaWeek-button i, .chat-search .input-group .input-group-btn > .fc-prev-button i, .chat-search .input-group .input-group-btn > .fc-next-button i, .chat-search .input-group .input-group-btn > .fc-today-button i {
+  color: #878787;
+  font-size: 20px;
+}
+
+.add-friend {
+  margin-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.add-friend span {
+  text-transform: capitalize;
+  font-size: 16px;
+  width: 33.33%;
+  float: left;
+  text-align: center;
+  vertical-align: middle;
+}
+.add-friend a {
+  width: 33.33%;
+  float: left;
+  font-size: 18px;
+}
+
+.chat-list-wrap{
+  list-style: none;
+  padding-left: 0;
+}
+
+.chat-list-wrap .chat-body > a {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: block;
+}
+.chat-list-wrap .chat-body .chat-data {
+  padding: 10px 15px;
+  position: relative;
+  -webkit-transition: 0.2s ease;
+  -moz-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+.chat-list-wrap .chat-body .chat-data:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+.chat-list-wrap .chat-body .chat-data.active-user {
+  background: rgba(255, 255, 255, 0.05);
+}
+.chat-list-wrap .chat-body .chat-data .user-img {
+  height: 35px;
+  width: 35px;
+  float: left;
+  margin-right: 15px;
+}
+.chat-list-wrap .chat-body .chat-data .user-data {
+  float: left;
+}
+.chat-list-wrap .chat-body .chat-data .user-data .time {
+  font-size: 12px;
+  margin-top: 2px;
+  width: 165px;
+}
+.chat-list-wrap .chat-body .chat-data .status {
+  border: 2px solid #fff;
+  border-radius: 50%;
+  height: 10px;
+  position: absolute;
+  left: 40px;
+  top: 37px;
+  width: 10px;
+}
+.chat-list-wrap .chat-body .chat-data .status.away {
+  background: #e69a2a;
+}
+.chat-list-wrap .chat-body .chat-data .status.offline {
+  background: #ea6c41;
+}
+.chat-list-wrap .chat-body .chat-data .status.online {
+  background: #469408;
+}
+
+.recent-chat-wrap .panel-heading {
+  padding: 0;
+  background: transparent;
+}
+.recent-chat-wrap .panel-heading .goto-back {
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.recent-chat-wrap .panel-heading .goto-back span {
+  font-size: 13px;
+  width: 33.33%;
+  float: left;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 30px;
+}
+.recent-chat-wrap .panel-heading .goto-back a {
+  width: 33.33%;
+  float: left;
+  font-size: 18px;
+}
+.recent-chat-wrap.card-view {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.recent-chat-wrap .input-group {
+  width: 100%;
+  display: block;
+}
+.recent-chat-wrap .input-group .input-msg-send {
+  background: rgba(255, 255, 255, 0.05);
+  border: medium none;
+  height: 60px;
+  padding-right: 60px;
+}
+.recent-chat-wrap .input-group .input-group-btn {
+  position: absolute;
+  right: 15px;
+  top: 7px;
+  z-index: 4;
+}
+.recent-chat-wrap .input-group .input-group-btn .btn, .recent-chat-wrap .input-group .input-group-btn .wizard > .actions a, .wizard > .actions .recent-chat-wrap .input-group .input-group-btn a, .recent-chat-wrap .input-group .input-group-btn .dt-buttons .dt-button, .dt-buttons .recent-chat-wrap .input-group .input-group-btn .dt-button, .recent-chat-wrap .input-group .input-group-btn .tablesaw-sortable th.tablesaw-sortable-head button, .tablesaw-sortable th.tablesaw-sortable-head .recent-chat-wrap .input-group .input-group-btn button, .recent-chat-wrap .input-group .input-group-btn .sweet-alert button, .sweet-alert .recent-chat-wrap .input-group .input-group-btn button, .recent-chat-wrap .input-group .input-group-btn .owl-theme .owl-nav [class*="owl-"], .owl-theme .owl-nav .recent-chat-wrap .input-group .input-group-btn [class*="owl-"], .recent-chat-wrap .input-group .input-group-btn button.fc-agendaDay-button.fc-state-default.fc-corner-right,
+.recent-chat-wrap .input-group .input-group-btn button.fc-month-button.fc-state-default.fc-corner-left,
+.recent-chat-wrap .input-group .input-group-btn button.fc-agendaWeek-button, .recent-chat-wrap .input-group .input-group-btn .fc-prev-button, .recent-chat-wrap .input-group .input-group-btn .fc-next-button, .recent-chat-wrap .input-group .input-group-btn .fc-today-button {
+  background: transparent none repeat scroll 0 0;
+  border: medium none;
+  padding: 0;
+}
+.recent-chat-wrap .input-group .input-group-btn .btn:hover, .recent-chat-wrap .input-group .input-group-btn .wizard > .actions a:hover, .wizard > .actions .recent-chat-wrap .input-group .input-group-btn a:hover, .recent-chat-wrap .input-group .input-group-btn .dt-buttons .dt-button:hover, .dt-buttons .recent-chat-wrap .input-group .input-group-btn .dt-button:hover, .recent-chat-wrap .input-group .input-group-btn .tablesaw-sortable th.tablesaw-sortable-head button:hover, .tablesaw-sortable th.tablesaw-sortable-head .recent-chat-wrap .input-group .input-group-btn button:hover, .recent-chat-wrap .input-group .input-group-btn .sweet-alert button:hover, .sweet-alert .recent-chat-wrap .input-group .input-group-btn button:hover, .recent-chat-wrap .input-group .input-group-btn .owl-theme .owl-nav [class*="owl-"]:hover, .owl-theme .owl-nav .recent-chat-wrap .input-group .input-group-btn [class*="owl-"]:hover, .recent-chat-wrap .input-group .input-group-btn button.fc-agendaDay-button.fc-state-default.fc-corner-right:hover,
+.recent-chat-wrap .input-group .input-group-btn button.fc-month-button.fc-state-default.fc-corner-left:hover,
+.recent-chat-wrap .input-group .input-group-btn button.fc-agendaWeek-button:hover, .recent-chat-wrap .input-group .input-group-btn .fc-prev-button:hover, .recent-chat-wrap .input-group .input-group-btn .fc-next-button:hover, .recent-chat-wrap .input-group .input-group-btn .fc-today-button:hover, .recent-chat-wrap .input-group .input-group-btn .btn:active, .recent-chat-wrap .input-group .input-group-btn .wizard > .actions a:active, .wizard > .actions .recent-chat-wrap .input-group .input-group-btn a:active, .recent-chat-wrap .input-group .input-group-btn .dt-buttons .dt-button:active, .dt-buttons .recent-chat-wrap .input-group .input-group-btn .dt-button:active, .recent-chat-wrap .input-group .input-group-btn .tablesaw-sortable th.tablesaw-sortable-head button:active, .tablesaw-sortable th.tablesaw-sortable-head .recent-chat-wrap .input-group .input-group-btn button:active, .recent-chat-wrap .input-group .input-group-btn .sweet-alert button:active, .sweet-alert .recent-chat-wrap .input-group .input-group-btn button:active, .recent-chat-wrap .input-group .input-group-btn .owl-theme .owl-nav [class*="owl-"]:active, .owl-theme .owl-nav .recent-chat-wrap .input-group .input-group-btn [class*="owl-"]:active, .recent-chat-wrap .input-group .input-group-btn button.fc-agendaDay-button.fc-state-default.fc-corner-right:active,
+.recent-chat-wrap .input-group .input-group-btn button.fc-month-button.fc-state-default.fc-corner-left:active,
+.recent-chat-wrap .input-group .input-group-btn button.fc-agendaWeek-button:active, .recent-chat-wrap .input-group .input-group-btn .fc-prev-button:active, .recent-chat-wrap .input-group .input-group-btn .fc-next-button:active, .recent-chat-wrap .input-group .input-group-btn .fc-today-button:active, .recent-chat-wrap .input-group .input-group-btn .btn:focus, .recent-chat-wrap .input-group .input-group-btn .wizard > .actions a:focus, .wizard > .actions .recent-chat-wrap .input-group .input-group-btn a:focus, .recent-chat-wrap .input-group .input-group-btn .dt-buttons .dt-button:focus, .dt-buttons .recent-chat-wrap .input-group .input-group-btn .dt-button:focus, .recent-chat-wrap .input-group .input-group-btn .tablesaw-sortable th.tablesaw-sortable-head button:focus, .tablesaw-sortable th.tablesaw-sortable-head .recent-chat-wrap .input-group .input-group-btn button:focus, .recent-chat-wrap .input-group .input-group-btn .sweet-alert button:focus, .sweet-alert .recent-chat-wrap .input-group .input-group-btn button:focus, .recent-chat-wrap .input-group .input-group-btn .owl-theme .owl-nav [class*="owl-"]:focus, .owl-theme .owl-nav .recent-chat-wrap .input-group .input-group-btn [class*="owl-"]:focus, .recent-chat-wrap .input-group .input-group-btn button.fc-agendaDay-button.fc-state-default.fc-corner-right:focus,
+.recent-chat-wrap .input-group .input-group-btn button.fc-month-button.fc-state-default.fc-corner-left:focus,
+.recent-chat-wrap .input-group .input-group-btn button.fc-agendaWeek-button:focus, .recent-chat-wrap .input-group .input-group-btn .fc-prev-button:focus, .recent-chat-wrap .input-group .input-group-btn .fc-next-button:focus, .recent-chat-wrap .input-group .input-group-btn .fc-today-button:focus {
+  background: transparent none repeat scroll 0 0;
+}
+.recent-chat-wrap .input-group .input-group-btn .btn i, .recent-chat-wrap .input-group .input-group-btn .wizard > .actions a i, .wizard > .actions .recent-chat-wrap .input-group .input-group-btn a i, .recent-chat-wrap .input-group .input-group-btn .dt-buttons .dt-button i, .dt-buttons .recent-chat-wrap .input-group .input-group-btn .dt-button i, .recent-chat-wrap .input-group .input-group-btn .tablesaw-sortable th.tablesaw-sortable-head button i, .tablesaw-sortable th.tablesaw-sortable-head .recent-chat-wrap .input-group .input-group-btn button i, .recent-chat-wrap .input-group .input-group-btn .sweet-alert button i, .sweet-alert .recent-chat-wrap .input-group .input-group-btn button i, .recent-chat-wrap .input-group .input-group-btn .owl-theme .owl-nav [class*="owl-"] i, .owl-theme .owl-nav .recent-chat-wrap .input-group .input-group-btn [class*="owl-"] i, .recent-chat-wrap .input-group .input-group-btn button.fc-agendaDay-button.fc-state-default.fc-corner-right i,
+.recent-chat-wrap .input-group .input-group-btn button.fc-month-button.fc-state-default.fc-corner-left i,
+.recent-chat-wrap .input-group .input-group-btn button.fc-agendaWeek-button i, .recent-chat-wrap .input-group .input-group-btn .fc-prev-button i, .recent-chat-wrap .input-group .input-group-btn .fc-next-button i, .recent-chat-wrap .input-group .input-group-btn .fc-today-button i {
+  color: #7F8B94;
+  font-size: 14px;
+}
+.recent-chat-wrap .input-group .input-group-btn.emojis {
+  right: 50px;
+}
+.recent-chat-wrap .chat-content .user-img {
+  height: 27px;
+  width: 27px;
+  position: absolute;
+}
+.recent-chat-wrap .chat-content ul li {
+  padding: 0 15px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.recent-chat-wrap .chat-content .msg {
+  padding: 7px 15px;
+  color: #fff;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+.recent-chat-wrap .chat-content .msg .msg-per-detail span {
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.recent-chat-wrap .chat-content .friend .friend-msg-wrap .msg {
+  margin-left: 16px;
+  background: rgb(35, 41, 48) none repeat scroll 0 0;
+  border-radius: 15px;
+}
+.recent-chat-wrap .chat-content .self .self-msg-wrap .msg {
+  background: rgb(137, 10, 35) none repeat scroll 0 0;
+  margin-left: 20px;
+  border-radius: 15px;
+}
+
+.chat-cmplt-wrap {
+  position: relative;
+}
+.chat-cmplt-wrap .chat-box-wrap {
+  left: 0;
+  position: relative;
+  -webkit-transition: left 0.4s ease 0s;
+  -moz-transition: left 0.4s ease 0s;
+  transition: left 0.4s ease 0s;
+}
+.chat-cmplt-wrap .recent-chat-box-wrap {
+  position: absolute;
+  right: -300px;
+  top: 0;
+  -webkit-transition: right 0.4s ease 0s;
+  -moz-transition: right 0.4s ease 0s;
+  transition: right 0.4s ease 0s;
+  width: 100%;
+  z-index: 100;
+}
+.chat-cmplt-wrap.chat-box-slide .chat-box-wrap {
+  left: -300px;
+}
+.chat-cmplt-wrap.chat-box-slide .recent-chat-box-wrap {
+  right: 0;
+}
+.chat-cmplt-wrap.chat-for-widgets, .chat-cmplt-wrap.chat-for-widgets-1 {
+  height: 370px;
+  overflow: hidden;
+}
+.chat-cmplt-wrap.chat-for-widgets .recent-chat-box-wrap, .chat-cmplt-wrap.chat-for-widgets-1 .recent-chat-box-wrap {
+  position: absolute;
+  right: -100%;
+}
+.chat-cmplt-wrap.chat-for-widgets.chat-box-slide .chat-box-wrap, .chat-cmplt-wrap.chat-box-slide.chat-for-widgets-1 .chat-box-wrap {
+  left: -100%;
+}
+.chat-cmplt-wrap.chat-for-widgets.chat-box-slide .recent-chat-box-wrap, .chat-cmplt-wrap.chat-box-slide.chat-for-widgets-1 .recent-chat-box-wrap {
+  right: 0;
+}
+.chat-cmplt-wrap.chat-for-widgets-1 {
+  height: 596px;
+}
+.chat-cmplt-wrap.chat-for-widgets-1 .chat-search {
+  padding: 0;
+}
+.chat-cmplt-wrap.chat-for-widgets-1 .chat-search .input-group input {
+  height: 52px;
+  border-radius: 0;
+  border: none;
+}
+.chat-cmplt-wrap.chat-for-widgets-1 .chat-search .input-group .input-group-btn {
+  top: 18px;
+}
+.chat-cmplt-wrap.chat-for-widgets-1 .chat-box-wrap {
+  float: left;
+  width: 30%;
+}
+.chat-cmplt-wrap.chat-for-widgets-1 .recent-chat-box-wrap {
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  float: left;
+  position: relative;
+  right: 0;
+  width: 70%;
+}
+
+.recent-chat-wrap .input-group .input-msg-send{
+  height: 46px;
+  padding: 0 10px;
+  width: 100%;
+}
+
+.chat-content, .chatapp-chat-nicescroll-bar {
+  overflow-y: auto;
+  height: 291px;
+  overflow-x: hidden;
+  display: block;
+}
+
+.chat-cmplt-wrap.chat-for-widgets-1 {
+  height: 370px;
+  background: #000;
+  border: 1px solid;
+  padding: 0;
+}
+
+.chat-window{
+  z-index: 10000;
+}
+
+.chat-content, .chatapp-chat-nicescroll-bar{
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.chat-content{
+  background-color: #1b1718;
+}
+
+.chat-data .user-data{
+  width: 150px;
+}
+
+.chat-list-wrap .chat-body .chat-data .user-img{
+  color: #fff;
+  margin-top: 7px;
+}
+
+.chat-list-wrap .chat-body .chat-data .user-data .time {
+  font-size: 12px;
+  margin-top: 2px;
+  width: 165px;
+}
+
+.truncate {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*MATCHES*/
+.nk-match{
+  padding: 10px 20px;
+}
+.nk-match .nk-match-team-name{
+  text-transform: none;
+}
+.w-64px{
+  width: 64px!important;
+}
+
+.chat-button-cont{
+  width: 193px;
+  height: 50px;
+  position: fixed;
+  z-index: 10000;
+  bottom: 0px;
+  right: 20px;
+  margin: 0px 0px 100px;
+  background: none;
+}
+
+.chat-button{
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
+  right: 0;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 43px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0px;
+  z-index: 1000;
+  border: 1px solid #fff;
+}
+
+.chat-button-tooltip{
+  position: absolute;
+  top: 5px;
+  background: rgba(46,48,51,.9);
+  color: #fff;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.2px;
+  padding: 11px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  -o-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  right: 70px;
+  opacity: 1;
+  filter: none;
+}
+
+.chat-window-top-buttons, .recent-chat-wrap .panel-heading .goto-back span.chat-window-top-buttons, .goto-back span.chat-window-top-buttons{
+  cursor: pointer;
+  float: none;
+  width: 20px;
+}
+
+.chat-window{
+  width: 300px;
+  position: fixed;
+  bottom: 80px;
+  right: 25px;
+}
+.chat-cmplt-wrap.chat-for-widgets-1 {
+  height: 370px;
+}
+.chat-cmplt-wrap.chat-for-widgets-1 .chat-box-wrap,
+.chat-cmplt-wrap.chat-for-widgets-1 .recent-chat-box-wrap{
+  float: none;
+  width: 100%;
+}
+.chat-list-wrap .chat-body .chat-data .user-img{
+  font-size: 34px;
+}
+.chat-cmplt-wrap.chat-for-widgets-1 .chat-search .input-group input{
+  height: 36px;
+}
+.chat-cmplt-wrap.chat-for-widgets-1 .chat-search .input-group .input-group-btn{
+  top: 15px;
+}
+.recent-chat-wrap .input-group .input-msg-send{
+  height: 40px;
+  font-size: 13px;
+  padding: 0 47px;
+}
+
+.match-chat{
+  position: relative;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+}
+
+.match-chat .chat-cmplt-wrap.chat-for-widgets-1{
+  background: transparent;
+  height: 250px;
+}
+
+.match-chat .chat-content, .match-chat .chatapp-chat-nicescroll-bar{
+  background: transparent;
+  height: 210px;
+}
+
+.match-chat .chatapp-chat-nicescroll-bar{
+  background-color: rgba(0,0,0,.6);
+}
+
+.recent-chat-wrap .input-group img{
+  position: absolute;
+  top: 8px;
+  width: 24px !important;
+  left: 10px;
+}
+
+.chat-list-wrap{
+  overflow-y: auto;
+  height: 331px;
+  overflow-x: hidden;
+}
+
+@media (max-width: 1024px){
+  .chat-cmplt-wrap.chat-for-widgets-1 .recent-chat-box-wrap {
+    right: 0;
+  }
+}
+.pa-t-13{
+  padding-top: 13px;
+}
+
+.nk-match .nk-match-status .nk-match-status-date{
+  font-size: 1em;
+
+}
+
+
+/*
+ol {
+  list-style: none;
+  counter-reset: li;
+}
+li:before {
+  counter-increment: li;
+  content: counters(li,".") ". ";
+}
+*/
+
+.team-bracket {
+  margin-bottom: 20px;
+  background-color: #232930;
+  border: 1px solid #293139;
+  border-radius: 4px;
+  padding: 7px 7px;
+}
+.w-40px{
+  width: 40px !important;
+}
+.w-25px{
+  width: 25px !important;
+}
+
+.match{
+  position: relative;
+}
+
+.match-connector{
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  display: inline-block;
+  padding: 9px 19px;
+  font-size: .87rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.match .team-bracket{
+  margin-bottom: 40px;
 }

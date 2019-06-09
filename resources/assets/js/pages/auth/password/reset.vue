@@ -3,7 +3,8 @@
     <div class="col-lg-8 m-auto">
       <card :title="$t('reset_password')">
         <form @submit.prevent="reset" @keydown="form.onKeydown($event)">
-          <alert-success :form="form" :message="status"/>
+          <alert-success :form="form"></alert-success>
+          <alert-error :form="form"></alert-error>
 
           <!-- Email -->
           <div class="form-group row">
@@ -74,9 +75,6 @@ export default {
   methods: {
     async reset () {
       const { data } = await this.form.post('/api/password/reset')
-
-      this.status = data.status
-
       this.form.reset()
     }
   }

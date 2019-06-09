@@ -18,12 +18,19 @@
 <script>
     import Form from 'vform'
     import axios from 'axios'
+    import { mapGetters } from 'vuex'
 
     export default {
-        middleware: 'guest',
+        //middleware: 'guest',
 
         metaInfo () {
             return { title: this.$t('verify_account') }
+        },
+
+        computed: {
+            ...mapGetters({
+                user: 'auth/user'
+            }),
         },
 
         data: () => ({

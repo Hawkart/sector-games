@@ -17,29 +17,36 @@
 
                     <table class="nk-team-table">
                         <tbody>
-                        <tr>
-                            <td>
-                                <strong class="h5">{{team.count_fights}}</strong>
+
+                        <tr v-if="team.institution_id>0">
+                            <td colspan="2">
+                                <span class="h6 text-left">{{team.institution.location.parent.title}}, {{team.institution.location.title}}</span>
                             </td>
+                        </tr>
+
+                        <tr>
                             <td>
                                 <strong class="h6">{{$t('count_matches')}}</strong>
                             </td>
+                            <td>
+                                <strong class="h5">{{team.count_fights}}</strong>
+                            </td>
                         </tr>
                         <tr>
-                            <td>
-                                <strong class="h5">{{team.count_wins}}</strong>
-                            </td>
                             <td>
                                 <strong class="h6">{{$t('count_wins')}}</strong>
                             </td>
+                            <td>
+                                <strong class="h5">{{team.count_wins}}</strong>
+                            </td>
                         </tr>
                         <tr>
                             <td>
-                                <strong class="h5" v-if="team.count_fights>0">{{ Number((team.count_wins/team.count_fights*100).toFixed(2))}}%</strong>
-                                <strong class="h5" v-else>0%</strong>
+                                <strong class="h6">{{$t('victory_rate')}}</strong>
                             </td>
                             <td>
-                                <strong class="h6">{{$t('victory_rate')}}</strong>
+                                <strong class="h5" v-if="team.count_fights>0">{{ Number((team.count_wins/team.count_fights*100).toFixed(2))}}%</strong>
+                                <strong class="h5" v-else>0%</strong>
                             </td>
                         </tr>
                         </tbody>
@@ -112,7 +119,7 @@
             getTeam()
             {
                 var query = this.ArrayToUrl({
-                    "_with" : 'game,users'
+                    "_with" : 'game,users,institution.location,institution.location.parent'
                 });
                 axios.get('/api/teams/'+this.$route.params.id+"?"+query).then((response) => {
                     this.$set(this, 'team', response.data);
@@ -124,7 +131,7 @@
             {
                 var query = this.ArrayToUrl({
                     'team_id' : this.$route.params.id,
-                    //'status' : 0,
+                    'status' : 1,
                     "_with" : 'user,team'
                 });
                 axios.get('/api/team_user?'+query).then((response) => {

@@ -18,10 +18,9 @@
             <div class="nk-gap"></div>
             <h2 class="h4">{{ $t('page_not_found') }}</h2>
 
-            <div>Or such a page just doesn't exist... <br> Would you like to go back to the homepage?</div>
             <div class="nk-gap-3"></div>
 
-            <router-link :to="{ name: 'home' }" class="nk-btn nk-btn-rounded nk-btn-color-white">
+            <router-link :to="{ name: 'welcome' }" class="nk-btn nk-btn-rounded nk-btn-color-white">
               {{ $t('go_home') }}
             </router-link>
           </div>
@@ -31,16 +30,6 @@
     </div>
     <div class="nk-fullscreen-block-bottom">
       <div class="nk-gap-2"></div>
-      <ul class="nk-social-links-2 nk-social-links-center">
-        <li><a class="nk-social-twitch" href="#"><span class="fa fa-twitch"></span></a></li>
-        <li><a class="nk-social-steam" href="#"><span class="fa fa-steam"></span></a></li>
-        <li><a class="nk-social-facebook" href="#"><span class="fa fa-facebook"></span></a></li>
-        <li><a class="nk-social-instagram" href="#"><span class="fa fa-instagram"></span></a></li>
-        <li><a class="nk-social-linkedin" href="#"><span class="fa fa-linkedin"></span></a></li>
-        <li><a class="nk-social-odnoklassniki" href="#"><span class="fa fa-odnoklassniki"></span></a></li>
-        <li><a class="nk-social-vk" href="#"><span class="fa fa-vk"></span></a></li>
-        <li><a class="nk-social-youtube" href="#"><span class="fa fa-youtube-play"></span></a></li>
-      </ul>
       <div class="nk-gap-2"></div>
     </div>
   </div>

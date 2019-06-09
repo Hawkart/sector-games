@@ -1,25 +1,5 @@
 <template>
     <card :title="$t('team')">
-        <!--<v-collapse-group :onlyOneActive="true" class="nk-accordion" id="accordion-1" role="tablist" aria-multiselectable="true">
-            <v-collapse-wrapper class="panel panel-default">
-                <div class="panel-heading" role="tab" v-collapse-toggle>
-                    {{ $t('create_team') }}
-                </div>
-                <div class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordion-1-1-heading" v-collapse-content>
-                    <p>This is hiddend content</p>
-                </div>
-            </v-collapse-wrapper>
-
-            <v-collapse-wrapper>
-                <div class="header" v-collapse-toggle>
-                    {{ $t('connect_to_team') }}
-                </div>
-                <div class="my-content" v-collapse-content>
-                    This is hiddend content
-                </div>
-            </v-collapse-wrapper>
-        </v-collapse-group>-->
-
         <div class="nk-accordion" id="accordion-1" role="tablist" aria-multiselectable="false">
             <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="accordion-1-1-heading">
@@ -56,18 +36,8 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-3 col-form-label text-md-right">{{ $t('nickname') }}</label>
-                            <div class="col-md-7">
-                                <input v-model="form.nickname" :class="{ 'is-invalid': form.errors.has('nickname') }" class="form-control" type="text" name="nickname">
-                                <has-error :form="form" field="nickname"/>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <div class="col-md-9 ml-md-auto">
                                 <v-button :loading="form.busy">{{ $t('update') }}</v-button>
-                                <login-with-social provider="vkontakte" ic="vk" :text="$t('connect_account')" v-if="!checkSocialConnected('vkontakte')"/>
-                                <login-with-social provider="steam" ic="steam" :text="$t('connect_account')" v-if="!checkSocialConnected('steam')"/>
                             </div>
                         </div>
                     </form>
@@ -83,7 +53,13 @@
                 </div>
                 <div id="accordion-1-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordion-1-2-heading">
                     <div class="nk-gap"></div>
-                    <div v-if="team!==null && user.team_id>0">
+
+                    <div class="alert alert-warning alert-dismissable mt-20" v-if="!user.confirmed">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <p>Для создания команды подтвердите почту.</p>
+                    </div>
+
+                    <div v-else-if="team!==null && user.team_id>0">
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label text-md-right label-avatar">{{ $t('avatar') }}</label>
                             <div class="col-md-7">
@@ -122,6 +98,10 @@
 
                         <div class="nk-gap"></div>
 
+                        <div class="alert alert-success alert-dismissable" v-if="inviteAnswerSuccess">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <p class="mb-0">Ваш ответ сохранен.</p>
+                        </div>
                         <table class="nk-table">
                             <tbody>
                             <tr>
@@ -137,14 +117,14 @@
                                         <span>{{ invitation.user.nickname}}</span>
                                     </router-link>
                                 </td>
-                                <td class="text-center"><i class="fa fa-check text-danger" v-if="invitation.user.id==team.capt_id && invitation.user.status==1"></i><span v-else>-</span></td>
+                                <td class="text-center"><i class="fa fa-check text-danger" v-if="invitation.user.id==team.capt_id"></i><span v-else>-</span></td>
                                 <td class="text-center">
                                     <span v-if="invitation.status==0">{{$t('status_pending')}}</span>
                                     <span v-if="invitation.status==1">{{$t('status_accepted')}}</span>
                                     <span v-if="invitation.status==2">{{$t('status_denied')}}</span>
                                 </td>
                                 <td class="text-nowrap text-center">
-                                   <span v-if="team.capt_id!=invitation.sender_id && invitation.status==0">
+                                   <span v-if="team.capt_id!=invitation.sender_id && invitation.status==0 && team.capt_id==user.id">
                                         <select @change="answerToInvite(team.id, invitation.user_id, $event)" class='form-control' data-style="form-control btn-default btn-outline">
                                             <option v-for="status in statuses" v-bind:value="status.id">
                                                 {{ $t(status.title) }}
@@ -155,6 +135,27 @@
                             </tr>
                             </tbody>
                         </table>
+
+                        <div class="mt-20">
+                            <span class="text-white">{{$t('invite_to_team_through')}}</span>
+                            <social-sharing :url="'https://youthleague.ru/teams/'+user.team_id"
+                                            title="ШКОЛЬНЫЙ ТУРНИР 2018 DOTA2"
+                                            description="ШКОЛЬНЫЙ ТУРНИР 2018 DOTA2. Для учащихся и выпускников общеобразовательных школ и среднеспециальных учебных заведений в возрасте от 14 до 18 лет."
+                                            hashtags="Dota2,киберспорт,турнир"
+                                            inline-template>
+                                <div class="ml-10 d-inline">
+                                    <network network="email" class="nk-btn nk-btn-rounded nk-btn-color-main-1">
+                                        <i class="fa fa-envelope"></i> Email
+                                    </network>
+                                    <network network="vk" class="nk-btn nk-btn-rounded nk-btn-color-main-1 btn-vk">
+                                        <i class="fa fa-vk"></i> ВКонтакте
+                                    </network>
+                                    <network network="facebook" class="nk-btn nk-btn-rounded nk-btn-color-main-1 btn-fb">
+                                        <i class="fa fa-facebook"></i> Facebook
+                                    </network>
+                                </div>
+                            </social-sharing>
+                        </div>
                     </div>
 
                     <div v-else-if="institution_user===null">
@@ -196,36 +197,39 @@
                 </div>
                 <div id="accordion-1-4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accordion-1-4-heading">
                     <div class="nk-gap"></div>
-                    <div v-if="invitations!==undefined && invitations.length">
-                        <div class="alert alert-success alert-dismissable mt-20" v-if="inviteAnswerSuccess">
+
+                    <div class="alert alert-warning alert-dismissable mt-20" v-if="!user.confirmed">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <p>Для просмотра приглашений подтвердите почту.</p>
+                    </div>
+
+                    <div v-else-if="invitations!==undefined && invitations.length>0">
+                        <div class="alert alert-success alert-dismissable" v-if="inviteAnswerSuccess">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <p>Your response to the invitation has been saved.</p>
+                            <p class="mb-0">Ваш ответ сохранен.</p>
                         </div>
                         <table class="nk-table">
                             <tbody>
                             <tr>
-                                <th>Logo</th>
-                                <th>Name</th>
-                                <th>Need players</th>
-                                <th>Balance, <i aria-hidden="true" class="fa fa-btc"></i></th>
-                                <th class="text-nowrap">Action</th>
+                                <th>{{$t('date')}}</th>
+                                <th>{{$t('title')}}</th>
+                                <th>{{$t('actions')}}</th>
                             </tr>
                             <tr v-for="invitation in invitations">
+                                <td>{{invitation.created_at}}</td>
                                 <td>
-                                    <router-link  :to="{ name: 'team.detail', params: { slug: invitation.team.slug }}">
-                                        <img :src="getImageLink(invitation.team.image)" class="img-responsive team-image" :alt="invitation.team.title" />
+                                    <router-link  :to="{ name: 'team', params: { id: invitation.team.id }}">
+                                        <img :src="getImageLink(invitation.team.image)" class="w-50px mr-10" :alt="invitation.team.title" />
+                                        <span>{{ invitation.team.title}}</span>
                                     </router-link>
                                 </td>
-                                <td>
-                                    <router-link  :to="{ name: 'team.detail', params: { slug: team.slug }}">
-                                        {{ invitation.team.title}}
-                                    </router-link>
-                                </td>
-                                <td class="text-center">{{ invitation.team.quantity}}</td>
-                                <td class="text-center">{{ invitation.team.balance}}</td>
                                 <td class="text-nowrap text-center">
-                                    <select @change="answerToInvite(invitation.team.id, $event)" class='form-control' data-style="form-control btn-default btn-outline">
-                                        <option v-for="status in statuses" v-bind:value="status.id">
+                                    <span v-if="invitation.status==1">{{$t('status_accepted')}}</span>
+                                    <span v-if="invitation.status==2">{{$t('status_denied')}}</span>
+                                    <select v-else @change="answerToInvite(invitation.team.id, user.id, $event)" class='form-control' data-style="form-control btn-default btn-outline">
+                                        <option v-for="status in statuses" v-bind:value="status.id"
+                                                :selected="status.id == invitation.status"
+                                        >
                                             {{ $t(status.title) }}
                                         </option>
                                     </select>
@@ -249,7 +253,6 @@
     import Form from 'vform'
     import axios from 'axios'
     import { mapGetters } from 'vuex'
-    import LoginWithSocial from '~/components/LoginWithSocial'
     import swal from 'sweetalert2'
     import Cookies from 'js-cookie'
     import VueCoreImageUpload from 'vue-core-image-upload'
@@ -260,15 +263,13 @@
         },
 
         components: {
-            LoginWithSocial,
             'vue-core-image-upload': VueCoreImageUpload,
         },
 
         data: () => ({
             form: new Form({
                 game_id: '',
-                game_roles: [],
-                nickname: ''
+                game_roles: []
             }),
             formTeam: new Form({
                 title: '',
@@ -290,9 +291,6 @@
             games: null,
             game_roles: [],
             institution_user: null,
-
-            user_social_accounts:[],
-
             team: null,
             teams: [],
             invitations_to_team: [],
@@ -301,7 +299,7 @@
             statuses: [
                 {id:0, title: 'pending'},
                 {id:1, title: 'accept'},
-                {id:2, title: 'denied'}
+                {id:2, title: 'deny'}
             ],
         }),
 
@@ -334,8 +332,6 @@
             this.getGames();
             if(this.user.game_id!=null)
                 this.getGameRoles(this.user.game_id);
-
-            this.getUserSocialAccounts();
 
             //For searching people from the same school
             this.getUserSchools();
@@ -385,11 +381,13 @@
             async createTeam()
             {
                 this.formTeam.slug = this.slug;
-                const { data } = this.formTeam.post('/api/teams');
+                const { data } = await this.formTeam.post('/api/teams');
 
-                this.team = data.data;
+                this.$set(this, 'team', data);
                 this.user.team_id = this.team.id;
                 this.$store.dispatch('auth/updateUser', { user: this.user })
+
+                this.getInvitationsToTeam();
             },
 
             async getUsersFromSchool(institution_id)
@@ -446,7 +444,7 @@
             {
                 var query = this.ArrayToUrl({
                     'user_id' : this.user.id,
-                    'status' : 0,
+                    //'status' : 0,
                     'sender_id-not': this.user.id,
                     "_with" : 'user,team'
                 });
@@ -456,23 +454,23 @@
                 });
             },
 
-            answerToInvite(team_id, event)
+            answerToInvite(team_id, user_id, event)
             {
                 var team_id = team_id;
-                var user_id = this.user.id;
+                //var user_id = this.user.id;
                 var status = event.target.value;
+                var _self = this;
 
-                if(this.user.free_player && this.user.team_id!==null)
+                /*if(this.user.free_player && parseInt(this.user.team_id)>0)
                 {
-
                     swal({
-                        title: 'Are you sure you want to connect the team?',
-                        text: "Your current team will be deleted and all invitations to your team to!",
+                        title: 'Вы уверены, что хотите присоединиться к команде?',
+                        text: "Вы будете удалены из текущей команды!",
                         type: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: 'Yes, accept invitation!'
+                        confirmButtonText: 'Да, подтверждаю приглашение!'
                     }).then(function (result) {
 
                         if (result.value) {
@@ -489,18 +487,26 @@
                         }
                     })
 
-                }else{
-                    axios.put('/api/teams/'+team_id+'/users/'+user_id, {status:status}).then(response => {
-                        this.inviteAnswerSuccess = true;
-                    }).catch(error => {
+                }else{*/
 
-                        swal({
-                            type: 'error',
-                            title: 'Error!',
-                            html: error.response.data.error
-                        });
-                    });
-                }
+                    swal({
+                        title: 'Изменить статус приглашения?',
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Да!'
+                    }).then(function (result) {
+
+                        if (result.value) {
+
+                            axios.put('/api/teams/' + team_id + '/users/' + user_id, {status: status}).then((response) => {
+                               // _self.inviteAnswerSuccess = true;
+                                _self.$set(_self, 'inviteAnswerSuccess', true);
+                            });
+                        }
+                    })
+                //}
             },
 
             leaveTeam(team_id)
@@ -508,13 +514,13 @@
                 var user_id = this.user.id;
 
                 swal({
-                    title: 'Are you sure you want to leave the team?',
-                    text: "You won't be able to revert this!",
+                    title: 'Вы уверены, что хотите покинуть команду?',
+                    //text: "You won't be able to revert this!",
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, leave it!'
+                    confirmButtonText: 'Да!'
                 }).then(function (result) {
 
                     if (result.value) {
@@ -547,38 +553,6 @@
                 })
                 //change team parent
             },
-
-            invite(user_id)
-            {
-                axios.put('/api/teams/'+this.team.id+'/users/'+user_id).then(response => {
-                    console.log(response);
-                });
-            },
-
-            getUserSocialAccounts()
-            {
-                axios.get('/api/user_social_accounts?user_id='+this.user.id).then((response) => {
-                    this.$set(this, 'user_social_accounts', response.data);
-                });
-            },
-
-            checkSocialConnected(provider)
-            {
-                var connected = false;
-                if(this.user_social_accounts.length>0)
-                {
-                    this.user_social_accounts.forEach(function(account)
-                    {
-                        if(account.provider==provider)
-                        {
-                            connected = true;
-                        }
-                    });
-                }
-
-                return connected;
-            },
-
         }
     }
 </script>
