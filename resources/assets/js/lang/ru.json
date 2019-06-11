@@ -91,8 +91,8 @@
   "invitations_sent": "Приглашения отправлены!",
   "join_team": "Присоединиться к команде",
   "join_team_request_success": "Запрос на вступление в команду отправлен.",
-  "youth" : "Национальная юношеская",
-  "cybersports_league": "киберспортивная лига",
+  "youth" : "Sector Esports ",
+  "cybersports_league": "Tournament",
   "no_tournaments": "На данный момент не проводится ни один турнир!",
   "now_you_can": "Теперь вы можете",
   "may_auth": "авторизоваться",
@@ -124,5 +124,6 @@
   "tournament_rules": "Технические правила Турнира",
   "tournament_start_time": "Старт турнира",
   "tournament_register_start_time": "Начало регистрации",
-  "reg_until": "Регистрация до"
+  "reg_until": "Регистрация до",
+  "privacy": "Соглашение о конфиденциальности"
 }

@@ -1,14 +1,14 @@
 <template>
     <div>
         <h2 class="text-center">
-          <span><span class="text-main-1">{{$t('youth')}}</span> {{$t('cybersports_league')}}&trade;</span>
+          <span><span class="text-main-1">{{$t('youth')}}</span> {{$t('cybersports_league')}}</span>
         </h2>
 
         <div class="row">
             <div class="col-lg-12">
             <flickity ref="flickity" :options="flickityOptions">
                 <div class="carousel-cell" style="background-image: url('/images/slider/slide_1.png')">
-                    <h3>Впиши своё имя в историю <br/>российского киберспорта!</h3>
+                    <h3>МУЛЬТИДИСЦИПЛИНАРНЫЙ КИБЕРСПОРТИВНЫЙ <br/>ФЕСТИВАЛЬ SECTOR </h3>
                     <h4 class="text-main-1" v-if="daysTo>0">Регистрация начнется через <strong>{{daysTo}}</strong> дня </h4>
                     <h4 class="text-main-1" v-else>
                         <router-link :to="{ name: 'register' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white">
@@ -16,7 +16,7 @@
                     </h4>
                 </div>
                 <div class="carousel-cell" style="background-image: url('/images/slider/slide_2.png')">
-                    <h3>Участвуй во втором всероссийском<br/> школьном турнире DOTA2!</h3>
+                    <h3>Яркое событие с лучшими командами <br/> мира и огромными призовыми</h3>
                     <h4 class="text-main-1" v-if="daysTo>0">Регистрация начнется через <strong>{{daysTo}}</strong> дня </h4>
                     <h4 class="text-main-1" v-else>
                         <router-link :to="{ name: 'register' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white">
@@ -24,15 +24,7 @@
                     </h4>
                 </div>
                 <div class="carousel-cell"  style="background-image: url('/images/slider/slide_3.png')">
-                    <h3>Собери свою команду и стань<br/> чемпионом школы!</h3>
-                    <h4 class="text-main-1" v-if="daysTo>0">Регистрация начнется через <strong>{{daysTo}}</strong> дня </h4>
-                    <h4 class="text-main-1" v-else>
-                        <router-link :to="{ name: 'register' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white">
-                            зарегистрируйтесь</router-link>
-                    </h4>
-                </div>
-                <div class="carousel-cell"  style="background-image: url('/images/slider/slide_6.png')">
-                    <h3>Стань звездой киберспорта - попади<br/> в финал Всероссийского турнира!</h3>
+                    <h3>Возможность выиграть автомобиль</h3>
                     <h4 class="text-main-1" v-if="daysTo>0">Регистрация начнется через <strong>{{daysTo}}</strong> дня </h4>
                     <h4 class="text-main-1" v-else>
                         <router-link :to="{ name: 'register' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white">
@@ -74,41 +66,14 @@
             <div class="col-lg-4">
                 <div class="nk-feature-1">
                     <div class="nk-feature-icon">
-                        <fa icon="university"/>
+                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trophy" class="svg-inline--fa fa-trophy fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M552 64H448V24c0-13.3-10.7-24-24-24H152c-13.3 0-24 10.7-24 24v40H24C10.7 64 0 74.7 0 88v56c0 35.7 22.5 72.4 61.9 100.7 31.5 22.7 69.8 37.1 110 41.7C203.3 338.5 240 360 240 360v72h-48c-35.3 0-64 20.7-64 56v12c0 6.6 5.4 12 12 12h296c6.6 0 12-5.4 12-12v-12c0-35.3-28.7-56-64-56h-48v-72s36.7-21.5 68.1-73.6c40.3-4.6 78.6-19 110-41.7 39.3-28.3 61.9-65 61.9-100.7V88c0-13.3-10.7-24-24-24zM99.3 192.8C74.9 175.2 64 155.6 64 144v-16h64.2c1 32.6 5.8 61.2 12.8 86.2-15.1-5.2-29.2-12.4-41.7-21.4zM512 144c0 16.1-17.7 36.1-35.3 48.8-12.5 9-26.7 16.2-41.8 21.4 7-25 11.8-53.6 12.8-86.2H512v16z"></path></svg>
                     </div>
                     <div class="nk-feature-cont">
                         <h3 class="nk-feature-title">{{countSchools}}</h3>
-                        <h3 class="nk-feature-title text-main-1">{{$t('schools')}}</h3>
+                        <h3 class="nk-feature-title text-main-1">{{$t('tournaments')}}</h3>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="nk-gap-2"></div>
-        <h3 class="nk-decorated-h-2"><span><span class="text-main-1">{{$t('latest')}}</span> {{$t('news')}}</span></h3>
-        <div class="nk-gap"></div>
-        <div class="nk-blog-grid">
-          <div class="row">
-
-            <div class="col-md-6 col-lg-4 col-xl-3" v-for="post in news">
-
-              <div class="nk-blog-post">
-
-                  <router-link :to="{ name: 'news.detail', params: { slug: post.slug }}" class="nk-post-img">
-                    <img :src="getImageLink(post.image)" :alt="post.title">
-                  </router-link>
-                  <div class="nk-gap"></div>
-                  <h2 class="nk-post-title h4"><router-link :to="{ name: 'news.detail', params: { slug: post.slug }}">{{post.title}}</router-link></h2>
-                  <div class="nk-post-text">
-                    <p>{{ post.excerpt | truncate(150, '...') }}</p>
-                  </div>
-                  <div class="nk-gap"></div>
-                  <router-link :to="{ name: 'news.detail', params: { slug: post.slug }}" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">{{$t('read_more')}}</router-link>
-                  <div class="nk-post-date float-right"><span class="fa fa-calendar"></span> {{moment(post.created_at, "YYYY-MM-DD h:mm:ss").format('MMMM Do')}}</div>
-              </div>
-
-            </div>
-
-          </div>
         </div>
 
         <div class="nk-gap-2"></div>
@@ -162,7 +127,6 @@ export default {
   },
 
   mounted() {
-      this.getNews();
 	  this.getPlayersCount();
 	  this.getTeamsCount();
 	  this.getSchoolsCount();
@@ -170,21 +134,6 @@ export default {
   },
 
   methods: {
-
-      getNews: function()
-      {
-          axios.get('/api/news?_limit=4&_sort=-id').then((response) => {
-              var news = response.data.data;
-              var _self = this;
-
-              news.forEach(function(post)
-              {
-                  post.created_at = _self.dateConvertUTC(post.created_at, -1);
-              });
-
-              this.$set(this, 'news', news);
-          });
-      },
 	  getPlayersCount()
         {
             var query = this.ArrayToUrl({
@@ -198,14 +147,6 @@ export default {
             axios.get('/api/users?'+query).then((response) => {
                 this.$set(this, 'countPlayers', response.data.total);
             });
-
-            /*var countPlayers = 52;
-            var d2 = new Date('Jun 25, 2018');
-            var d3 = new Date();
-            var ds = (d3.getTime()-d2.getTime()) / (1000*60*60*24);
-            ds = Math.round(ds);
-            his.$set(this, 'countPlayers', countPlayers*(1+ds));
-            */
         },
         getTeamsCount()
         {
@@ -219,14 +160,6 @@ export default {
             axios.get('/api/teams?'+query).then((response) => {
                 this.$set(this, 'countTeams', response.data.total)
             });
-
-            /*var countTeams = 7;
-            var d2 = new Date('Jun 25, 2018');
-            var d3 = new Date();
-            var ds = (d3.getTime()-d2.getTime()) / (1000*60*60*24);
-            ds = Math.round(ds);
-
-            this.$set(this, 'countTeams', countTeams*(1+ds));*/
         },
         getSchoolsCount()
         {
@@ -235,7 +168,7 @@ export default {
                 '_fields' : 'id'
             });
 
-            axios.get('/api/institutions?'+query).then((response) => {
+            axios.get('/api/tournaments?'+query).then((response) => {
                 this.$set(this, 'countSchools', response.data.total);
             });
         }

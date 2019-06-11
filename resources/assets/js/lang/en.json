@@ -91,8 +91,8 @@
   "invitations_sent": "Invitations sent!",
   "join_team": "Join the team",
   "join_team_request_success": "The request was sent to the team's captain.",
-  "youth" : "National Esports",
-  "cybersports_league": "youth league",
+  "youth" : "Sector Esports ",
+  "cybersports_league": "Tournament",
   "no_tournaments": "No tournaments found!",
   "now_you_can": "Now you can",
   "may_auth": "login",
@@ -104,7 +104,7 @@
   "date": "date",
   "agree": "I consent to the processing of my personal data",
   "terms": "Terms & Conditions",
-  "regulation": "The regulations of the Youth Cybersport League",
+  "regulation": "The regulations of the Sector Esports",
   "contacts": "Contacts",
   "faq": "FAQ",
   "support": "Support",
@@ -119,5 +119,6 @@
   "match_result": "Match result",
   "winner": "The winner",
   "no_results": "no results found.",
-  "reg_until": "Check-in until"
+  "reg_until": "Check-in until",
+  "privacy": "Privacy"
 }

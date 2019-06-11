@@ -10,8 +10,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="{{ asset('/images/ava_32.png') }}">
-	<link rel="icon" href="{{ asset('/images/ava_32.png') }}" type="image/x-icon">
+	<link rel="shortcut icon" href="https://static.tildacdn.com/tild3431-6437-4165-a439-353163306230/favicon.ico">
+	<link rel="icon" href="https://static.tildacdn.com/tild3431-6437-4165-a439-353163306230/favicon.ico" type="image/x-icon">
 	
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     <link href="{{ asset('/css/custom.css') }}" rel="stylesheet" type="text/css"/>
@@ -19,8 +19,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.10.1/bootstrap-social.css" rel="stylesheet">
 
     <meta property="og:title" content="Национальная Юношеская Киберспортивная Лига">
-    <link rel="image_src" href="{{ asset('/images/ava_150.png') }}">
-    <meta property="og:image" content="{{ asset('/images/ava_150.png') }}">
+    <link rel="image_src" href="{{ asset('/images/logo.png') }}">
+    <meta property="og:image" content="{{ asset('/images/logo.png') }}">
 </head>
 
 <body>

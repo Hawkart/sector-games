@@ -9,17 +9,8 @@
                 За опоздание или неявку на матч команде может быть засчитано техническое поражение.
             </li>
             <li class="text-white">
-                Присоедините ваш аккаунт Steam в <router-link :to="{ name: 'settings.team' }">Личном кабинете</router-link>.
-            </li>
-            <li class="text-white">
-                Вступите в группу <a href="https://steamcommunity.com/groups/youthleague" target="_blank">"Национальная Молодежная Киберспортивная Лига"</a> в STEAM Community.
-            </li>
-            <li class="text-white">
-                Пригласите игроков вашей команды в группу <a href="https://steamcommunity.com/groups/youthleague" target="_blank">"Национальная Молодежная Киберспортивная Лига"</a> в STEAM Community.
-            </li>
-            <li class="text-white">
                 Пригласите игроков вашей команды зарегистрироваться на турнир:<br/>
-                <social-sharing :url="user.team_id>0 ? 'https://youthleague.ru/teams/'+user.team_id : 'https://youthleague.ru/register'"
+                <social-sharing :url="user.team_id>0 ? 'https://sector.games/teams/'+user.team_id : 'https://sector.games/register'"
                                 title="ШКОЛЬНЫЙ ТУРНИР 2018 DOTA2"
                                 description="ШКОЛЬНЫЙ ТУРНИР 2018 DOTA2. Для учащихся и выпускников общеобразовательных школ и среднеспециальных учебных заведений в возрасте от 14 до 18 лет."
                                 hashtags="Dota2,киберспорт,турнир"
@@ -37,22 +28,7 @@
                     </div>
                 </social-sharing>
             </li>
-            <li class="text-white">
-                Присоедините ваш аккаунт ВКонтакте в <router-link :to="{ name: 'settings.team' }">Личном кабинете</router-link>.
-            </li>
-            <li class="text-white">
-                Вступите в группу <a href="https://vk.com/youthleagueru" target="_blank">"Национальная Молодежная Киберспортивная Лига"</a> в ВКонтакте. В этой группе будут отображаться все последние новости Турнира: Результаты матчей,
-                объявляться победители этапов, публиковаться фотоотчеты о награждении чемпионов.
-            </li>
-            <li class="text-white">
-                Пригластите ваших друзей, знакомых, близких в группу <a href="https://vk.com/youthleagueru" target="_blank">"Национальная Молодежная Киберспортивная Лига"</a> в ВКонтаке чтобы они следили за Вашими победами, успехами и достижениями.
-            </li>
         </ol>
-
-        <p class="text-white">
-            По всем вопросам Вы всегда можете обратиться в <a href="https://vk.com/youthleagueru" target="_blank">группу</a> поддержки ВКонтакте или через виджет  ВК в правом нижнем углу сайта.
-        </p>
-
     </card>
 </template>
 

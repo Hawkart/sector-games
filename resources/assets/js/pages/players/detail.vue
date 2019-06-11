@@ -9,15 +9,6 @@
             <aside class="col-lg-3 nk-sidebar-sticky-parent">
                 <div class="nk-box-1 bg-dark-2 text-center" v-if="player!==null">
                     <img :src="getImageLink(player.avatar, 'avatar_user')" class="w-100">
-                    <table class="nk-team-table" v-if="institution!==null && institution.institution!==null">
-                        <tbody>
-                        <tr>
-                            <td>
-                                <span class="h6">{{institution.institution.title}}, {{institution.number}} {{institution.char}}</span>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
                 </div>
             </aside>
             <div class="col-lg-9">

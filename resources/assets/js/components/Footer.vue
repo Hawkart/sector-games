@@ -22,7 +22,9 @@
         <div class="nk-copyright">
             <div class="container">
                 <div class="nk-copyright-left">
-                    <router-link :to="{ name: 'agreement' }" class="text-white">{{ $t('terms') }}</router-link>
+                    <router-link :to="{ name: 'agreement' }" class="text-white mr-25">{{ $t('terms') }}</router-link>
+
+                    <router-link :to="{ name: 'privacy' }" class="text-white">{{ $t('privacy') }}</router-link>
                 </div>
                 <div class="nk-copyright-right">
                     Copyright &copy; Powered by <a href="https://sparta.games" target="_blank">Sparta.Games</a>

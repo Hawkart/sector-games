@@ -9,7 +9,7 @@
             </router-link>
 
             <nav>
-                 <router-link :to="getLink(page)"  v-for="page in pagesNumber" v-if="pagination.last_page > 1"
+                 <router-link :to="getLink(page)"  v-for="(page, index) in pagesNumber" :key="index" v-if="pagination.last_page > 1"
                              v-bind:class="[ page == isActived ? 'nk-pagination-current' : '']">
                     {{ page }}
                 </router-link>

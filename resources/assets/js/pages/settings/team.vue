@@ -138,7 +138,7 @@
 
                         <div class="mt-20">
                             <span class="text-white">{{$t('invite_to_team_through')}}</span>
-                            <social-sharing :url="'https://youthleague.ru/teams/'+user.team_id"
+                            <social-sharing :url="'https://sector.games/teams/'+user.team_id"
                                             title="ШКОЛЬНЫЙ ТУРНИР 2018 DOTA2"
                                             description="ШКОЛЬНЫЙ ТУРНИР 2018 DOTA2. Для учащихся и выпускников общеобразовательных школ и среднеспециальных учебных заведений в возрасте от 14 до 18 лет."
                                             hashtags="Dota2,киберспорт,турнир"
@@ -156,10 +156,6 @@
                                 </div>
                             </social-sharing>
                         </div>
-                    </div>
-
-                    <div v-else-if="institution_user===null">
-                        <p>{{$t('need_institution_connection')}}</p>
                     </div>
 
                     <form @submit.prevent="createTeam" @keydown="formTeam.onKeydown($event)" v-else>

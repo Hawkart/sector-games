@@ -19,7 +19,7 @@
         </ul>
 
         <router-link :to="{ name: 'settings.team' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white mt-20 w-100">
-          Собери команду<br/> вашей школы
+          Собери команду
         </router-link>
 
       </card>
@@ -49,11 +49,6 @@ export default {
             icon: 'user',
             name: this.$t('profile'),
             route: 'settings.profile'
-          },
-          {
-            icon: 'university',
-            name: this.$t('school'),
-            route: 'settings.school'
           },
           {
             icon: 'users',

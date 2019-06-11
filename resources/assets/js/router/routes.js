@@ -1,5 +1,6 @@
 const Welcome = () => import('~/pages/welcome').then(m => m.default || m)
 const Agreement = () => import('~/pages/agreement').then(m => m.default || m)
+const Privacy = () => import('~/pages/privacy').then(m => m.default || m)
 const Regulation = () => import('~/pages/regulations').then(m => m.default || m)
 const Faq = () => import('~/pages/faq').then(m => m.default || m)
 const Chat = () => import('~/pages/chat').then(m => m.default || m)
@@ -33,7 +34,6 @@ const SchoolTournament = () => import('~/pages/tournament_2018.vue').then(m => m
 const Home = () => import('~/pages/home').then(m => m.default || m)
 const Settings = () => import('~/pages/settings/index').then(m => m.default || m)
 const SettingsProfile = () => import('~/pages/settings/profile').then(m => m.default || m)
-const SettingsSchool = () => import('~/pages/settings/school').then(m => m.default || m)
 const SettingsTeam = () => import('~/pages/settings/team').then(m => m.default || m)
 const SettingsInstruction = () => import('~/pages/settings/instruction').then(m => m.default || m)
 
@@ -42,6 +42,7 @@ const BracketsTemplate = () => import('~/pages/brackets').then(m => m.default ||
 export default [
   { path: '/', name: 'welcome', component: Welcome },
   { path: '/agreement', name: 'agreement', component: Agreement },
+  { path: '/privacy', name: 'privacy', component: Privacy },
   { path: '/regulation', name: 'regulation', component: Regulation },
   { path: '/chat', name: 'chat', component: Chat },
   { path: '/faq', name: 'faq', component: Faq },
@@ -78,7 +79,6 @@ export default [
     children: [
       { path: '', redirect: { name: 'settings.profile' } },
       { path: 'profile', name: 'settings.profile', component: SettingsProfile },
-      { path: 'school', name: 'settings.school', component: SettingsSchool },
       { path: 'team', name: 'settings.team', component: SettingsTeam },
       { path: 'instruction', name: 'settings.instruction', component: SettingsInstruction }
     ] },

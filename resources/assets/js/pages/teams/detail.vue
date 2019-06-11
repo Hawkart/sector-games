@@ -17,13 +17,6 @@
 
                     <table class="nk-team-table">
                         <tbody>
-
-                        <tr v-if="team.institution_id>0">
-                            <td colspan="2">
-                                <span class="h6 text-left">{{team.institution.location.parent.title}}, {{team.institution.location.title}}</span>
-                            </td>
-                        </tr>
-
                         <tr>
                             <td>
                                 <strong class="h6">{{$t('count_matches')}}</strong>
@@ -56,30 +49,20 @@
             </aside>
             <div class="col-lg-9">
                 <card :title="$t('players')">
-                    <table class="nk-table" v-if="team!==null && team.users!==null">
-                        <tbody>
-                        <tr>
-                            <th>{{$t('name')}}</th>
-                            <th>{{$t('victory_rate')}}</th>
-                            <th>{{$t('status')}}</th>
-                        </tr>
-                        <tr v-for="player in team.users">
-                            <td>
-                                <router-link  :to="{ name: 'player', params: { id: player.id }}"  class="vm-title">
-                                    <img :src="getImageLink(player.avatar)" class="w-50px mr-10" />
-                                    <span>{{ player.nickname}}</span>
+                    <div class="row vertical-gap" v-if="team!==null && team.users!==null">
+                        <div class="col-lg-3 col-md-3 col-xs-12"  v-for="player in team.users">
+                            <div class="nk-box-1 bg-dark-2 text-center">
+                                <router-link  :to="{ name: 'player', params: { id: player.id }}">
+                                    <img :src="getImageLink(player.avatar)" class="w-100" /><br/>
+                                    <span class="nk-feature-title">{{ player.nickname}}</span>
                                 </router-link>
-                            </td>
-                            <td class="text-center" v-if="team.count_fights>0">{{ Number((team.count_wins/team.count_fights*100).toFixed(2))}}%</td>
-                            <td class="text-center" v-else>0%</td>
-                            <td class="text-center">
+                                <br/>
                                 <span v-if="player.free_player"><span class="text-warning">{{$t('free')}}</span></span>
                                 <span v-else-if="player.team_id>0 && player.id==team.capt_id"><span class="text-info">{{$t('captain')}}</span></span>
                                 <span v-else><span class="text-success">{{$t('in_team')}}</span></span>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                            </div>
+                        </div>
+                    </div>
                 </card>
             </div>
 

@@ -6,72 +6,11 @@
 
           <alert-error :form="form"></alert-error>
 
-          <div class="form-group row" v-if="countries!==null">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('country') }}</label>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-md-right">{{ $t('nickname') }}</label>
             <div class="col-md-7">
-              <select v-model="country_id" name="country_id" class='form-control' id="country_list">
-                <option v-for="country in countries" v-bind:value="country.id">
-                  {{ country.title }}
-                </option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group row" v-if="country_id!==null">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('region') }}</label>
-            <div class="col-md-7">
-              <select v-model="region_id" name="region_id" class='form-control' id="region_list">
-                <option v-for="region in regions" v-bind:value="region.id">
-                  {{ region.title }}
-                </option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group row" v-if="region_id!=null">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('locality') }}</label>
-            <div class="col-md-7">
-              <select v-model="city_id" name="city_id" class='form-control' id="city_list">
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group row" v-if="city_id!=null">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('school') }}</label>
-            <div class="col-md-7">
-              <select v-model="form.institution_id" name="institution_id" id="school_list" class='form-control'>
-                <option v-for="institution in institutions" v-bind:value="institution.id">
-                  {{ institution.title }}
-                </option>
-              </select>
-              <has-error :form="form" field="institution_id" :class="{ 'd-block': form.errors.has('institution_id') }"/>
-            </div>
-          </div>
-
-          <div class="form-group row" v-if="city_id!=null">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('class') }}</label>
-            <div class="col-md-7">
-              <select v-model="form.class" name="class" :class="{ 'is-invalid': form.errors.has('class') }" class='form-control'>
-                <option v-for="cl in numberRange(8, 11)" v-bind:value="cl">
-                  {{ cl }}
-                </option>
-              </select>
-              <has-error :form="form" field="class"/>
-            </div>
-          </div>
-
-          <div class="form-group row" v-if="city_id!=null">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('char') }}</label>
-            <div class="col-md-7">
-              <select v-model="form.char" name="char" :class="{ 'is-invalid': form.errors.has('char') }" class='form-control'>
-                <option v-for="char in chars" v-bind:value="char">
-                  {{ char }}
-                </option>
-                <option v-for="cl in numberRange(1, 10)" v-bind:value="cl">
-                  {{ cl }}
-                </option>
-              </select>
-              <has-error :form="form" field="char"/>
+              <input v-model="form.nickname" :class="{ 'is-invalid': form.errors.has('nickname') }" class="form-control" type="text" name="nickname">
+              <has-error :form="form" field="nickname"/>
             </div>
           </div>
 
@@ -80,6 +19,18 @@
             <div class="col-md-7">
               <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" class="form-control" type="text" name="name">
               <has-error :form="form" field="name"/>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-md-right">{{ $t('game') }}</label>
+            <div class="col-md-7">
+              <select v-model="form.game_id" name="game_id" class='form-control' :class="{ 'is-invalid': form.errors.has('game_id') }">
+                <option v-for="game in games" v-bind:value="game.id" :key="game.id">
+                  {{ game.title }}
+                </option>
+              </select>
+              <has-error :form="form" field="game_id"/>
             </div>
           </div>
 
@@ -101,15 +52,6 @@
               <has-error :form="form" field="password"/>
             </div>
           </div>
-
-          <!-- Password Confirmation -->
-          <!--<div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('confirm_password') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.password_confirmation" :class="{ 'is-invalid': form.errors.has('password_confirmation') }" class="form-control" type="password" name="password_confirmation">
-              <has-error :form="form" field="password_confirmation"/>
-            </div>
-          </div>-->
 
           <!--<div class="form-group row">
             <label class="col-md-3 col-form-label text-md-right">&nbsp;</label>
@@ -180,21 +122,11 @@ export default {
       email: '',
       nickname: '',
       password: '',
-      institution_id: '',
-      class: '',
-      char: '',
       game_id: '',
       game_roles: [1],
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone!==undefined ? Intl.DateTimeFormat().resolvedOptions().timeZone : "",
       agree: true
     }),
-      country_id: null,
-      countries: null,
-      region_id: null,
-      regions: null,
-      city_id: null,
-      cities: null,
-      institutions: null,
       //sitekey: window.config.googleRecaptchaKey,
       games: null,
       game: null,
@@ -205,73 +137,18 @@ export default {
         ...mapGetters({
             user: 'auth/user',
             locale: 'lang/locale',
-        }),
-        chars: function ()
-        {
-            var str = this.$t('alphabet');
-            return str.split(",");
-        },
+        })
     },
 
   mounted() {
-      this.getCountries();
       this.getDota();
-
-      Vue.nextTick(function() {
-          $.fn.select2.amd.define('select2/i18n/ru', [], function () {
-              // Russian
-              return {
-                  errorLoading: function () {
-                      return 'Результат не может быть загружен.';
-                  },
-                  inputTooLong: function (args) {
-                      var overChars = args.input.length - args.maximum;
-                      var message = 'Пожалуйста, удалите ' + overChars + ' символ';
-                      if (overChars >= 2 && overChars <= 4) {
-                          message += 'а';
-                      } else if (overChars >= 5) {
-                          message += 'ов';
-                      }
-                      return message;
-                  },
-                  inputTooShort: function (args) {
-                      var remainingChars = args.minimum - args.input.length;
-
-                      var message = 'Пожалуйста, введите ' + remainingChars + ' или более символов';
-
-                      return message;
-                  },
-                  loadingMore: function () {
-                      return 'Загружаем ещё ресурсы…';
-                  },
-                  maximumSelected: function (args) {
-                      var message = 'Вы можете выбрать ' + args.maximum + ' элемент';
-
-                      if (args.maximum >= 2 && args.maximum <= 4) {
-                          message += 'а';
-                      } else if (args.maximum >= 5) {
-                          message += 'ов';
-                      }
-
-                      return message;
-                  },
-                  noResults: function () {
-                      return 'Ничего не найдено';
-                  },
-                  searching: function () {
-                      return 'Поиск…';
-                  }
-              };
-          });
-      });
+      this.getGames();
   },
 
   methods: {
     async register () {
-
-      this.form.nickname = this.form.email;
       //this.form['g-recaptcha-response'] = document.getElementsByName('g-recaptcha-response')[0].value;
-      this.form.game_id = this.game.id;
+      //this.form.game_id = this.game.id;
 
       // Register the user.
       const { data } = await this.form.post('/api/register')
@@ -297,146 +174,18 @@ export default {
             this.$set(this, 'game', response.data[0]);
         });
     },
+    async getGames()
+    {
+      await axios.get('/api/games').then((response) => {
+        this.$set(this, 'games', response.data);
+      });
+    },
     sendVerifyEmail()
     {
         axios.post('/api/email/verify_code/resend').then((response) => {
             this.cofirmation_sent = true;
         })
-    },
-    async getCountries()
-    {
-        await axios.get('/api/locations?parent_id=null').then((response) => {
-            this.$set(this, 'countries', response.data);
-        });
-
-        var self = this;
-        $("#country_list").select2().on("change", function (e) {
-            self.country_id = $(e.currentTarget).find("option:selected").val();
-        });
-    },
-    async selectCountry()
-    {
-        await this.getRegions(this.country_id);
-    },
-    async selectRegion()
-    {
-        await this.getCities(this.region_id);
-    },
-    async selectCity()
-    {
-        await this.getSchools(this.city_id);
-    },
-
-    getRegions(parent_id)
-    {
-        axios.get('/api/locations?_sort=title&parent_id='+parent_id).then((response) => {
-            this.$set(this, 'regions', response.data);
-
-            var self = this;
-            $("#region_list").select2().on("change", function (e) {
-                self.region_id = $(e.currentTarget).find("option:selected").val();
-            });
-        });
-    },
-    getCities(parent_id)
-    {
-        axios.get('/api/locations?_sort=title&_limit=30&parent_id='+parent_id).then((response) => {
-
-            var cities = response.data;
-            var self = this;
-            this.$set(this, 'cities', cities);
-
-            if ($('#city_list').data('select2')) {
-                $("#city_list").select2('destroy');
-            }
-
-            $("#city_list").select2({
-                language: self.locale,
-                ajax: {
-                    url: window.config.apiHost+'/api/locations',
-                    dataType: 'json',
-                    delay: 250,
-                    data: function (params) {
-                        return {
-                            _sort: "title",
-                            parent_id: parent_id,
-                            "title-lk": params.term+"*", // search term
-                            page: params.page || 1,
-                            _limit: 30
-                        };
-                    },
-                    processResults: function (data, params)
-                    {
-                        params.page = params.page || 1;
-                        self.$set(self, 'cities', data.data);
-
-                        return {
-                            results: data.data.map(function (item) {
-                                return {
-                                    id: item.id,
-                                    text: item.title
-                                };
-                            }),
-                            pagination: {
-                                more: (params.page * 30) < data.total
-                            }
-                        };
-                    },
-                    cache: true
-                },
-                placeholder: 'Введите населенный пункт',
-                minimumInputLength: 2
-            }).on("change", function (e) {
-                self.city_id = $(e.currentTarget).find("option:selected").val();
-            });
-
-        });
-    },
-    getSchools(location_id)
-    {
-        axios.get('/api/institutions?_sort=title&location_id='+location_id).then((response) => {
-            this.$set(this, 'institutions', response.data);
-
-            var self = this;
-            $("#school_list").select2().on("change", function (e) {
-                self.form.institution_id = $(e.currentTarget).find("option:selected").val();
-            });
-
-        });
-    },
-    numberRange (start, end) {
-        return new Array(end - start+1).fill().map((d, i) => i + start);
     }
-  },
-  watch: {
-      country_id: function(val, oldVal)
-      {
-          this.region_id = null;
-          this.city_id = null;
-          this.institution_id = null;
-          $('#region_list').val(null).trigger("change");
-          $('#city_list').val(null).trigger("change");
-          $('#school_list').val(null).trigger("change");
-
-          this.getRegions(this.country_id);
-      },
-      region_id: function(val, oldVal)
-      {
-          this.city_id = null;
-          this.institution_id = null;
-          $('#city_list').val(null).trigger("change");
-          $('#school_list').val(null).trigger("change");
-
-          if(val!=null)
-            this.getCities(val);
-      },
-      city_id: function(val, oldVal)
-      {
-          this.institution_id = null
-          $('#school_list').val(null).trigger("change");
-          if(val!=null)
-            this.getSchools(this.city_id);
-      }
   }
 }
 </script>

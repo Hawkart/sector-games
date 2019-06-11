@@ -90,12 +90,10 @@
                                 </router-link>
                             </td>
                             <td class="text-center"><span v-if="player.team_id>0 && player.team!==null">
-
-                                    <router-link  :to="{ name: 'team.detail', params: {slug : player.team.slug }}">
+                                    <router-link  :to="{ name: 'team.detail', params: {id : player.team.id }}">
                                         <img :src="getImageLink(player.team.image)" class="w-50px mr-10" v-if="player.team.image!==null"/>
                                         <span v-if="player.team.image==null">{{player.team.title}}</span>
                                     </router-link>
-
                                 </span></td>
                             <td class="text-center">{{player.fights_count}}</td>
                             <td class="text-center">{{player.wins}}</td>
