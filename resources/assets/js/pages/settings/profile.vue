@@ -77,14 +77,16 @@
       </div>
 
       <!-- Submit Button -->
-      <!--<div class="form-group row">
+      <div class="form-group row">
         <div class="col-md-9 ml-md-auto">
           <v-button :loading="form.busy">{{ $t('update') }}</v-button>
 
+          <!--
           <login-with-social provider="vkontakte" ic="vk" :text="$t('connect_account')" v-if="!checkSocialConnected('vkontakte')"/>
           <login-with-social provider="steam" ic="steam" :text="$t('connect_account')" v-if="!checkSocialConnected('steam')"/>
+          -->
         </div>
-      </div>-->
+      </div>
 
     </form>
   </card>
