@@ -59,67 +59,6 @@
 							</div>
 						</td>
 					</tr>
-
-					<tr>
-						<td>
-							<a href="#" class="vm-title">
-								<img src="/images/ava_32.png" class="w-50px mr-10"/>
-								<span>CS:GO</span>
-							</a>
-						</td>
-						<td class="text-center">
-							<img src="/images/CS_GO1.png" width="35" />
-						</td>
-						<td class="text-center">23 фев. 2019 г., МСК</td>
-						<td class="text-center">17 фев. 2019 г., МСК</td>
-						<td class="text-center">-</td>
-						<td>
-							<div class="input-group mt-5">
-								<button disabled class="btn btn-defualt btn-xs text-info">Регистрация ожидается</button>
-							</div>
-						</td>
-					</tr>
-
-					<tr>
-						<td>
-							<a href="#" class="vm-title">
-								<img src="/images/ava_32.png" class="w-50px mr-10"/>
-								<span>LOL</span>
-							</a>
-						</td>
-						<td class="text-center">
-							<img src="/images/lol.jpg" width="35" />
-						</td>
-						<td class="text-center">13 апр. 2019 г., МСК</td>
-						<td class="text-center">7 апр. 2019 г., МСК</td>
-						<td class="text-center">-</td>
-						<td>
-							<div class="input-group mt-5">
-								<button disabled class="btn btn-defualt btn-xs text-info">Регистрация ожидается</button>
-							</div>
-						</td>
-					</tr>
-
-					<tr>
-						<td>
-							<a href="#" class="vm-title">
-								<img src="/images/ava_32.png" class="w-50px mr-10"/>
-								<span>DOTA2</span>
-							</a>
-						</td>
-						<td class="text-center">
-							<img src="https://sparta.games/storage/games/February2018/6MmyFNiGM8h9igLGkgru.png" width="35" />
-						</td>
-						<td class="text-center">11 мая 2019 г., МСК</td>
-						<td class="text-center">5 мая 2019 г., МСК</td>
-						<td class="text-center">-</td>
-						<td>
-							<div class="input-group mt-5">
-								<button disabled class="btn btn-defualt btn-xs text-info">Регистрация ожидается</button>
-							</div>
-						</td>
-					</tr>
-
                 </tbody>
             </table>
 			
@@ -187,6 +126,7 @@
                     var queryStartParams = {
                         //"status" : 1,
 						//"register_start-gt" : this.dateConvertUTC(dnow.toLocaleDateString(), -1),
+						'site_id': 2,
                         'page' : 1,
                         '_limit' : 12,
                         "_sort" : 'start_at',

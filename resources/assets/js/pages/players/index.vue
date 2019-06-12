@@ -1,74 +1,39 @@
 <template>
     <div>
 
-		<!--<template v-if="authenticated && user.institution_id!=null">
-			<div class="row mt-20">
-				<div class="col-md-12">
-					<card>
-						<div class="form-wrap">
-							<form autocomplete="off" id="filter-form">
-								<div class="row">
-									<div class="col-md-3">
-										<select v-model="free_player" name="free_player" class='form-control' data-style="form-control btn-default btn-outline" id="status_list">
-											<option v-for="status in statuses" v-bind:value="status.id">
-												{{ $t(status.title) }}
-											</option>
-										</select>
-									</div>
-								</div>
-							</form>
-						</div>
-					</card>
-				</div>
-			</div>
-			<div class="nk-gap-2"></div>
-		</template>-->
-		
         <card :title="$t('players')">
+            <template>
+                <div class="row">
+                    <div class="col-md-12">
+                        <card>
+                            <div class="form-wrap">
+                                <form autocomplete="off" id="filter-form">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <input type="text" v-model="nickname" @input="debouncedSearch" name="nickname" class="form-control" :placeholder="$t('nickname')">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select v-model="status_id" name="status_id" class='form-control' data-style="form-control btn-default btn-outline" id="status_list">
+                                                <option v-for="status in statuses" v-bind:value="status.id">
+                                                    {{ status.title }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </card>
+                    </div>
+                </div>
+                <div class="nk-gap-2"></div>
+            </template>
 
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					
-					<!--<template v-if="user.institution_id===null">
-						<p class="text-white">
-							Для просмотра игроков вы должны 
-							<router-link :to="{ name: 'settings.school' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white f07em">
-								задать школу 
-							</router-link> в личном кабинете.
-						</p>
-					</template>
-				
-					<template v-if="user.institution_id!=null && players!==null && players.length>0 && user.team_id>0">
-                        <div class="mb-20">
-                            <span class="text-white">{{$t('invite_to_team_through')}}</span>
-                            <social-sharing :url="'https://youthleague.ru/teams/'+user.team_id"
-                                            title="ШКОЛЬНЫЙ ТУРНИР 2018 DOTA2"
-                                            description="ШКОЛЬНЫЙ ТУРНИР 2018 DOTA2. Для учащихся и выпускников общеобразовательных школ и среднеспециальных учебных заведений в возрасте от 14 до 18 лет."
-                                            hashtags="Dota2,киберспорт,турнир"
-                                            inline-template>
-                                <div class="ml-10 d-inline">
-                                    <network network="email" class="nk-btn nk-btn-rounded nk-btn-color-main-1">
-                                        <i class="fa fa-envelope"></i> Email
-                                    </network>
-                                    <network network="vk" class="nk-btn nk-btn-rounded nk-btn-color-main-1 btn-vk">
-                                        <i class="fa fa-vk"></i> ВКонтакте
-                                    </network>
-                                    <network network="facebook" class="nk-btn nk-btn-rounded nk-btn-color-main-1 btn-fb">
-                                        <i class="fa fa-facebook"></i> Facebook
-                                    </network>
-                                </div>
-                            </social-sharing>
-                        </div>
-                        <a class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white" @click.prevent="sendInvites">
-                            {{ $t('send_invitations_to_team') }} ({{parseInt(choose_players.length)}})
-                        </a>
-                        <div class="nk-gap"></div>
-					</template>-->
-				
                     <table class="nk-table" v-if="players!==null && players.length>0">
                         <tbody>
                         <tr>
-                            <!--<th v-if="authenticated"></th>-->
+                            <th v-if="authenticated"></th>
                             <th>{{$t('name')}}</th>
                             <th>{{$t('team')}}</th>
                             <th>{{$t('count_matches')}}</th>
@@ -77,12 +42,12 @@
                             <th>{{$t('status')}}</th>
                         </tr>
                         <tr v-for="player in players">
-                            <!--<td class="text-center" v-if="authenticated">
+                            <td class="text-center" v-if="authenticated">
                                 <template v-if="player.free_player && player.id!=user.id">
                                     <input type="checkbox" :value="player.id" v-model="choose_players">
                                     <label>&nbsp;</label>
                                 </template>
-                            </td>-->
+                            </td>
                             <td>
                                 <router-link  :to="{ name: 'player', params: { id: player.id }}"  class="vm-title">
                                     <img :src="getImageLink(player.avatar)" class="w-50px mr-10" />
@@ -90,7 +55,7 @@
                                 </router-link>
                             </td>
                             <td class="text-center"><span v-if="player.team_id>0 && player.team!==null">
-                                    <router-link  :to="{ name: 'team.detail', params: {id : player.team.id }}">
+                                    <router-link  :to="{ name: 'team', params: {id : player.team.id }}">
                                         <img :src="getImageLink(player.team.image)" class="w-50px mr-10" v-if="player.team.image!==null"/>
                                         <span v-if="player.team.image==null">{{player.team.title}}</span>
                                     </router-link>
@@ -107,18 +72,15 @@
                         </tr>
                         </tbody>
                     </table>
+
+                    <p v-else class="text-white">
+                        {{$t('no_players')}}
+                    </p>
                 </div>
             </div>
 
             <pagination :pagination="pagination"></pagination>
         </card>
-
-        <!--<card v-else :title="$t('players')">
-            <p class="text-white">
-                Для того чтобы увидеть список игроков, <router-link :to="{ name: 'register' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white f07em">
-                зарегистрируйтесь</router-link> или <router-link :to="{ name: 'login' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white f07em">авторизуйтесь</router-link>, если у вас есть аккаунт.
-            </p>
-        </card>-->
     </div>
 </template>
 
@@ -127,6 +89,7 @@
     import axios from 'axios'
     import Vue from 'vue'
     import swal from 'sweetalert2'
+    import debounce from 'lodash/debounce';
 
     export default {
         metaInfo () {
@@ -140,11 +103,16 @@
             })
         },
         mounted() {
-		
-			//if(this.authenticated && this.user.institution_id!=null)
-			//{
-				this.getVueItems();
-			//}
+            this.getVueItems();
+
+            var _self = this;
+            Vue.nextTick(function() {
+                $("#status_list").select2({
+                    placeholder: "Статус"
+                }).on("change", function (e) {
+                    _self.status_id = $(e.currentTarget).find("option:selected").val();
+                });
+            });
         },
         data : function() {
             return {
@@ -153,11 +121,13 @@
                 country_id: this.$route.query.country_id || '',
                 free_player: this.$route.query.free_player || '',
                 pagination: [],
+                status_id: null,
+                nickname: '',
                 choose_players: [],
                 statuses: [
                     {id:'', title: ''},
-                    {id:0, title: this.$t('free')},
-                    {id:1, title: this.$t('in_team')}
+                    {id:1, title: this.$t('free')},
+                    {id:0, title: this.$t('in_team')}
                 ],
             }
         },
@@ -168,18 +138,17 @@
                     'page' : 1,
                     '_limit' : 12,
                     'type' : 'player',
+                    'site_id': 2,
                     '_with' : 'team,country,team.fights',
                     "active" : 1,
                     "_sort" : '-id'
                 };
 
-                /*if(this.authenticated && this.user.type=='player')
-                {
-                    queryStartParams['game_id'] = this.user.game_id;
-					if(this.user.institution_id!==null)
-						queryStartParams['institution_id'] = this.user.institution_id;
-					queryStartParams['institution_id-not'] = 'null';
-                }*/
+                if(parseInt(this.status_id)==0 || parseInt(this.status_id)==1)
+                    queryStartParams['free_player'] = this.status_id;
+
+                if(this.nickname.length>2)
+                    queryStartParams['_q'] = this.nickname;
 
                 var query = this.UrlParamsMerge(queryStartParams);
 
@@ -253,9 +222,17 @@
                     //console.log(response);
                 });
             },
+
+            debouncedSearch: debounce(function () {
+                this.getVueItems();
+            }, 500)
         },
         watch: {
             '$route.query'(newPage, oldPage) {
+                this.getVueItems();
+            },
+            status_id: function(val, oldVal)
+            {
                 this.getVueItems();
             }
         }

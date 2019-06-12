@@ -1,27 +1,35 @@
 <template>
     <div>
         <card :title="$t('teams')">
+
+            <template>
+                <div class="row">
+                    <div class="col-md-12">
+                        <card>
+                            <div class="form-wrap">
+                                <form autocomplete="off" id="filter-form">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <input type="text" v-model="q" @input="debouncedSearch" name="q" class="form-control" :placeholder="$t('search')">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select v-model="status_id" name="status_id" class='form-control' data-style="form-control btn-default btn-outline" id="status_list">
+                                                <option v-for="status in statuses" v-bind:value="status.id">
+                                                    {{ status.title }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </card>
+                    </div>
+                </div>
+                <div class="nk-gap-2"></div>
+            </template>
+
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					
-					<!--<template v-if="user.institution_id===null">
-						<p class="text-white">
-							Для просмотра команд вы должны 
-							<router-link :to="{ name: 'settings.school' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white f07em">
-								задать школу 
-							</router-link> в личном кабинете.
-						</p>
-					</template>
-					
-					<template v-if="user.institution_id!=null && teams.length==0">
-						<p class="text-white">
-							В вашей школе еще нет ни одной команды. Будьте первым,  
-							<router-link :to="{ name: 'settings.team' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white f07em">
-							создайте
-							</router-link> команду.
-						</p>
-					</template>-->
-
                     <table class="nk-table" v-if="teams!==null && teams.length>0">
                         <tbody>
                         <tr>
@@ -62,17 +70,15 @@
                         </tr>
                         </tbody>
                     </table>
+
+                    <p v-else class="text-white">
+                        {{$t('no_teams')}}
+                    </p>
+
                     <pagination :pagination="pagination"></pagination>
                 </div>
             </div>
         </card>
-
-        <!--<card v-else :title="$t('teams')">
-            <p class="text-white">
-                Для того чтобы увидеть список команд, <router-link :to="{ name: 'register' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white f07em">
-                зарегистрируйтесь</router-link> или <router-link :to="{ name: 'login' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white f07em">авторизуйтесь</router-link>, если у вас есть аккаунт.
-            </p>
-        </card>-->
     </div>
 </template>
 
@@ -81,6 +87,7 @@
     import axios from 'axios'
     import Vue from 'vue'
     import swal from 'sweetalert2'
+    import debounce from 'lodash/debounce';
 
     export default {
 
@@ -95,67 +102,16 @@
             })
         },
         mounted() {
-
             this.getVueItems();
 
-			/*if(this.authenticated && this.user.institution_id!=null)
-			{
-				this.getVueItems();
-				this.getGames();
-				this.getCountries();
-
-				var self = this;
-				Vue.nextTick(function(){
-
-					$("#game_list").select2({
-						placeholder: "Select game",
-						allowClear: true
-					}).on("select2:select", function(e) {
-						self.game_id = $(e.currentTarget).find("option:selected").val();
-						self.search();
-					}).on("select2:unselecting", function (e) {
-						self.game_id = '';
-
-						if(self.country_id!='')
-							self.$router.push(self.$route.path+"?users_country_id="+self.country_id);
-						else
-							self.$router.push(self.$route.path);
-					});
-
-					$("#country_list").select2({
-						placeholder: "Select country",
-						templateResult: formatState,
-						templateSelection: formatState,
-						allowClear: true
-					}).on("select2:select", function(e) {
-						self.country_id = $(e.currentTarget).find("option:selected").val();
-						self.search();
-					}).on("select2:unselecting", function (e) {
-						self.country_id = '';
-						if(self.game_id!='')
-							self.$router.push(self.$route.path+"?game_id="+self.game_id);
-						else
-							self.$router.push(self.$route.path);
-					});
-
-					function formatState (opt)
-					{
-						if (!opt.id) {
-							return opt.text;
-						}
-						var optimage = $(opt.element).data('image');
-						if(!optimage){
-							return opt.text;
-						} else {
-							var $opt = $(
-								'<span><img src="/images/flags/' + optimage + '" width="23px" /> ' + opt.text + '</span>'
-							);
-							return $opt;
-						}
-					};
-
-				});
-			}*/
+            var _self = this;
+            Vue.nextTick(function() {
+                $("#status_list").select2({
+                    placeholder: "Статус"
+                }).on("change", function (e) {
+                    _self.status_id = $(e.currentTarget).find("option:selected").val();
+                });
+            });
         },
         data : function() {
             return {
@@ -164,37 +120,31 @@
                 countries: [],
                 queryString: '',
                 pagination: [],
+                status_id: -1,
+                q: '',
                 statuses: [
-                    {id:'', title: ''},
-                    {id:0, title: 'pending'},
-                    {id:1, title: 'accepted'}
-                ],
-                game_id: this.$route.query.game_id || '',
-                country_id: this.$route.query.users_country_id || ''/*,
-                groups: [
-                    {teams: [146, 131, 181, 2, 73], title: "Восточная конференция"},
-                    {teams: [252, 167, 109, 110, 220], title: "Западная конференция"}
-                ]*/
+                    {id: '', title: ''},
+                    {id: 0, title: this.$t('status_pending')},
+                    {id: 1, title: this.$t('status_accepted')}
+                ]
             }
         },
         methods : {
-            getVueItems: function(){
-
+            getVueItems: function()
+            {
                 var queryStartParams = {
-                    //'status': 1,
+                    'site_id': 2,
                     'page' : 1,
                     '_limit' : 12,
-                    '_with' : 'game,fights,users,institution.location,institution.location.parent',
+                    '_with' : 'game,fights,users',
                     "_sort" : '-count_wins'
                 };
 
-                /*if(this.authenticated && this.user.type!='investor')
-                {
-                    queryStartParams['game_id'] = this.user.game_id;
-					if(this.user.institution_id!==null)
-						queryStartParams['institution_id'] = this.user.institution_id;
-					queryStartParams['institution_id-not'] = 'null';
-                }*/
+                if(parseInt(this.status_id)==0 || parseInt(this.status_id)==1)
+                    queryStartParams['status'] = this.status_id;
+
+                if(this.q.length>2)
+                    queryStartParams['_q'] = this.q;
 
                 var query = this.UrlParamsMerge(queryStartParams);
 
@@ -239,9 +189,16 @@
                     });
                 });
             },
+            debouncedSearch: debounce(function () {
+                this.getVueItems();
+            }, 500)
         },
         watch: {
             '$route.query'(newPage, oldPage) {
+                this.getVueItems();
+            },
+            status_id: function(val, oldVal)
+            {
                 this.getVueItems();
             }
         }
