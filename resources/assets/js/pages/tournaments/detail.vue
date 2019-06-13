@@ -53,7 +53,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-12 text-white" :v-html="tournament.description">
+                                    <div class="col-lg-12 text-white" v-html="tournament.description">
                                     </div>
                                 </div>
                             </aside>
@@ -114,7 +114,7 @@
                     <div role="tabpanel" class="tab-pane fade" id="tabs-1-5">
                         <div class="nk-gap"></div>
                         <div class="row mt-30">
-                            <div class="col-lg-12 text-white" :v-html="tournament.rules">
+                            <div class="col-lg-12 text-white" v-html="tournament.rules">
                             </div>
                         </div>
                     </div>
