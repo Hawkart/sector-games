@@ -28,6 +28,13 @@
                 <div class="nk-gap-2"></div>
             </template>
 
+            <template v-if="authenticated && players!==null && players.length>0">
+                <a class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white" @click.prevent="sendInvites">
+                    {{ $t('send_invitations_to_team') }} ({{parseInt(choose_players.length)}})
+                </a>
+                <div class="nk-gap"></div>
+            </template>
+
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <table class="nk-table" v-if="players!==null && players.length>0">
@@ -205,6 +212,9 @@
             },
             sendInvites(){
                 var _self = this;
+
+                //check is captain
+
 
                 this.choose_players.forEach(function (user_id) {
                     _self.invite(user_id);

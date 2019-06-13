@@ -11,8 +11,7 @@
                     <img :src="getImageLink(team.image, 'avatar_team')" class="w-100">
                     <div class="nk-gap"></div>
 
-                    <button v-if="!authenticated || (team.quantity>team.users.length && authenticated && user.id!=team.capt_id && user.type=='player' && user.active)" @click="joinTeam(team.id)" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white f07em w-100">
-                        {{$t('join_team')}}
+                    <button v-if="!authenticated || (team.quantity>team.users.length && authenticated && user.id!=team.capt_id && user.type=='player' && user.active)" @click="joinTeam(team.id)" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white f07em w-100" :v-html="$t('join_team')">
                     </button>
 
                     <table class="nk-team-table">

@@ -10,6 +10,12 @@
                 <div class="nk-box-1 bg-dark-2 text-center" v-if="player!==null">
                     <img :src="getImageLink(player.avatar, 'avatar_user')" class="w-100">
                 </div>
+
+                <div class="nk-gap"></div>
+
+                <button v-if="authenticated && user.team_id>0"
+                        @click="invite" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white f07em w-100" :v-html="$t('send_invitations_to_team')">
+                </button>
             </aside>
             <div class="col-lg-9">
                 <card :title="$t('team')" v-if="team!==null">
@@ -46,9 +52,6 @@
                             <td class="text-center">
                                 <span v-if="team.status==0"><span class="text-warning">{{$t('status_pending')}}</span></span>
                                 <span v-if="team.status==1"><span class="text-success">{{$t('status_accepted')}}</span></span>
-                                <button v-if="team.quantity>team.users.length && authenticated && user.id!==team.capt_id && user.type=='player' && user.active" @click="joinTeam(team.id)" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white">
-                                    {{$t('join_team')}}
-                                </button>
                             </td>
                         </tr>
                         </tbody>
@@ -115,6 +118,15 @@
             getUserTeam: function(){
                 axios.get('/api/users/'+this.$route.params.id+'/team?_with=game,users').then((response) => {
                     this.$set(this, 'team', response.data);
+                });
+            },
+            invite()
+            {
+                axios.put('/api/teams/'+this.user.team_id+'/users/'+this.player.id).then(response => {
+                    swal({
+                        type: 'success',
+                        title: this.$t('invitations_sent')
+                    })
                 });
             },
         },

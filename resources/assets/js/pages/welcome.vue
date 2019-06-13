@@ -138,6 +138,7 @@ export default {
         {
             var query = this.ArrayToUrl({
                 //"active" : 1,
+                "site_id": 2,
                 'type' : 'player',
 				'institution_id-not': "null",
                 "_limit" : 1,
@@ -152,6 +153,7 @@ export default {
         {
             var query = this.ArrayToUrl({
                 "status-not" : 2,
+                "site_id": 2,
 				"institution_id-not": "null",
                 "_limit" : 1,
                 '_fields' : 'id'
@@ -164,6 +166,7 @@ export default {
         getSchoolsCount()
         {
             var query = this.ArrayToUrl({
+                "site_id": 2,
                 "_limit" : 1,
                 '_fields' : 'id'
             });
