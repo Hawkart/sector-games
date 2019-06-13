@@ -5,7 +5,10 @@
             <div class="nk-tabs">
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#tabs-1-1" role="tab" data-toggle="tab">Инфо</a>
+                        <a class="nav-link active" href="#tabs-1-1" role="tab" data-toggle="tab">Лобби</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tabs-1-5" role="tab" data-toggle="tab">Правила</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#tabs-1-2" role="tab" data-toggle="tab">Команды</a>
@@ -16,108 +19,45 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#tabs-1-4" role="tab" data-toggle="tab">Сетка</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#tabs-1-5" role="tab" data-toggle="tab">Призы</a>
-                    </li>
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade show active" id="tabs-1-1">
                         <div class="nk-gap"></div>
                         <div class="row vertical-gap">
-                            <div class="col-md-6 col-xs-6">
+                            <div class="col-md-4 col-xs-6">
                                 <img :src="getImageLink(tournament.image, 'avatar_team')" class="w-100">
                             </div>
-                            <aside class="col-lg-6 nk-sidebar-sticky-parent">
-                                <dl>
-                                    <dt class="mb-5">{{$t('tournament_start_time')}}:</dt>
-                                    <dd class="mb-15 txt-dark font-13 weight-500">{{moment(tournament.start_at, "YYYY-MM-DD h:mm:ss").format('D MMM, HH:mm') }} МСК</dd>
-                                    <dt class="mb-5">{{$t('reg_until')}}:</dt>
-                                    <dd class="mb-10 txt-dark font-13 weight-500">{{moment(tournament.start_at, "YYYY-MM-DD h:mm:ss").subtract(1, 'hours').format('D MMM, HH:mm') }} МСК</dd>
-                                    <dt class="mb-5">{{$t('teams')}}:</dt>
-                                    <dd class="mb-10 txt-dark font-13 weight-500">{{tournament.teams.length}} / 175</dd>
-                                    <dt class="mb-5">{{$t('game')}}:</dt>
-                                    <dd class="mb-10 txt-dark font-13 weight-500">
-                                        <router-link :to="{ name: 'game', params: { gameId: tournament.game.id }}" :title="tournament.game.title">
-                                            <img :src="getImageLink(tournament.game.logo_mini)" width="35" :alt="tournament.game.title" />
-                                        </router-link>
-                                    </dd>
-                                </dl>
+                            <aside class="col-lg-8 nk-sidebar-sticky-parent">
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <dl>
+                                            <dt class="mb-5">{{$t('tournament_start_time')}}:</dt>
+                                            <dd class="mb-15 txt-dark font-13 weight-500">{{moment(tournament.start_at, "YYYY-MM-DD h:mm:ss").format('D MMM, HH:mm') }} МСК</dd>
+                                            <dt class="mb-5">{{$t('reg_until')}}:</dt>
+                                            <dd class="mb-10 txt-dark font-13 weight-500">{{moment(tournament.start_at, "YYYY-MM-DD h:mm:ss").subtract(1, 'hours').format('D MMM, HH:mm') }} МСК</dd>
+                                        </dl>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <dl>
+                                            <dt class="mb-5">{{$t('teams')}}:</dt>
+                                            <dd class="mb-10 txt-dark font-13 weight-500">{{tournament.teams.length}} / {{ tournament.count_teams}}</dd>
+                                            <dt class="mb-5">{{$t('game')}}:</dt>
+                                            <dd class="mb-10 txt-dark font-13 weight-500">
+                                                <router-link :to="{ name: 'game', params: { gameId: tournament.game.id }}" :title="tournament.game.title">
+                                                    <img :src="getImageLink(tournament.game.logo_mini)" width="35" :alt="tournament.game.title" />
+                                                </router-link>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12 text-white" :v-html="tournament.description">
+                                    </div>
+                                </div>
                             </aside>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12 mt-20">
-                                <p class="text-white">Для учащихся и выпускников общеобразовательных школ и среднеспециальных учебных заведений в возрасте от 14 до 18 лет.</p>
-                                <div class="nk-gap-2"></div>
-                                <div class="row vertical-gap">
-
-                                    <div class="col-lg-3">
-                                        <div class="nk-feature-1">
-                                            <h4 class="nk-feature-title text-main-1 mb-0 f1em">1 Этап:</h4>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-9">
-                                        <div class="nk-feature-1">
-                                            <div class="nk-feature-cont">
-                                                <h3 class="nk-feature-title text-main-1">Внутришкольный</h3>
-                                                <p>
-                                                    Пройдет с 07 по 11 августа 2018 года.<br>
-                                                    На этом этапе опрелятся Чемпионы Школ.<br>
-                                                    В следующий этап от школы выходит только одна команда.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="nk-gap-2"></div>
-
-                                <div class="row vertical-gap">
-
-                                    <div class="col-lg-3">
-                                        <div class="nk-feature-1">
-                                            <h4 class="nk-feature-title text-main-1 mb-0 f1em">2 Этап:</h4>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-9">
-                                        <div class="nk-feature-1">
-                                            <div class="nk-feature-cont">
-                                                <h3 class="nk-feature-title text-main-1">РЕГИОНАЛЬНЫЕ КВАЛИФИКАЦИИ</h3>
-                                                <p>
-                                                    Пройдет с 12 августа по 19 августа 2018 года.<br>
-                                                    Чемпионы школ встретятся в отборочном туре, чтобы определить финалистов, которые дальше продожат борьбу за звание Чемпиона России.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="nk-gap-2"></div>
-
-                                <div class="row vertical-gap">
-
-                                    <div class="col-lg-3">
-                                        <div class="nk-feature-1">
-                                            <h4 class="nk-feature-title text-main-1 mb-0 f1em">3 Этап:</h4>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-9">
-                                        <div class="nk-feature-1">
-                                            <div class="nk-feature-cont">
-                                                <h3 class="nk-feature-title text-main-1">Всероссийский Финал</h3>
-                                                <p>
-                                                    Финал пройдет с 29 по 31 августа 2018 года.<br>
-                                                    Победителя узнает вся страна!
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nk-gap"></div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="tabs-1-2">
                         <div class="nk-gap"></div>
@@ -169,97 +109,12 @@
                         <div class="nk-gap"></div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="tabs-1-4">
-                        <div class="nk-gap"></div>
-                        <div class="row mt-30">
-                            <div class="col-lg-3 text-center">
-                                <div class="text-white mb-10">Восточная конференция:</div>
-                                <div v-for="team in tournament.teams" v-if="groups[0].teams.indexOf(team.id)>-1" class="team-bracket">
-                                    <router-link  :to="{ name: 'team', params: { id: team.id }}" class="vm-title text-left">
-                                        <img :src="getImageLink(team.image, 'avatar_team')" class="img-responsive team-image w-25px" :alt="team.title" />
-                                        <span class="ml-10">{{team.title}}</span>
-                                    </router-link>
-                                </div>
-                                <div class="mt-40">&nbsp;</div>
-                                <div class="text-white mb-10">Западная конференция:</div>
-                                <div v-for="team in tournament.teams" v-if="groups[1].teams.indexOf(team.id)>-1" class="team-bracket">
-                                    <router-link  :to="{ name: 'team', params: { id: team.id }}" class="vm-title text-left">
-                                        <img :src="getImageLink(team.image, 'avatar_team')" class="img-responsive team-image w-25px" :alt="team.title" />
-                                        <span class="ml-10">{{team.title}}</span>
-                                    </router-link>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 text-center">
-                                <div class="mt-70">&nbsp;</div>
-
-                                <div class="text-white mb-10">Полуфинал 1:</div>
-                                <div v-for="team in tournament.teams" v-if="[2,109].includes(team.id)" class="team-bracket">
-                                    <router-link  :to="{ name: 'team', params: { id: team.id }}" class="vm-title text-left">
-                                        <img :src="getImageLink(team.image, 'avatar_team')" class="img-responsive team-image w-25px" :alt="team.title" />
-                                        <span class="ml-10">{{team.title}}</span>
-                                    </router-link>
-                                </div>
-
-                                <div class="mt-100">&nbsp;</div>
-                                <div class="mt-100">&nbsp;</div>
-
-                                <div class="text-white mb-10">Полуфинал 2:</div>
-                                <div v-for="team in tournament.teams" v-if="[146,110].includes(team.id)" class="team-bracket">
-                                    <router-link  :to="{ name: 'team', params: { id: team.id }}" class="vm-title text-left">
-                                        <img :src="getImageLink(team.image, 'avatar_team')" class="img-responsive team-image w-25px" :alt="team.title" />
-                                        <span class="ml-10">{{team.title}}</span>
-                                    </router-link>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-3 text-center">
-                                <div class="mt-100">&nbsp;</div>
-                                <div class="mt-100">&nbsp;</div>
-                                <div class="mt-10">&nbsp;</div>
-
-                                <div class="text-white mb-10">ФИНАЛ:</div>
-                                <div v-for="team in tournament.teams" v-if="[2,110].includes(team.id)" class="team-bracket">
-                                    <router-link  :to="{ name: 'team', params: { id: team.id }}" class="vm-title text-left">
-                                        <img :src="getImageLink(team.image, 'avatar_team')" class="img-responsive team-image w-25px" :alt="team.title" />
-                                        <span class="ml-10">{{team.title}}</span>
-                                    </router-link>
-                                </div>
-
-                                <div class="mt-100">&nbsp;</div>
-                                <div class="mt-100">&nbsp;</div>
-                                <div class="mt-50">&nbsp;</div>
-                                <div class="text-white mb-10">Матч за 3-е:</div>
-                                <div v-for="team in tournament.teams" v-if="[109,146].includes(team.id)" class="team-bracket">
-                                    <router-link  :to="{ name: 'team', params: { id: team.id }}" class="vm-title text-left">
-                                        <img :src="getImageLink(team.image, 'avatar_team')" class="img-responsive team-image w-25px" :alt="team.title" />
-                                        <span class="ml-10">{{team.title}}</span>
-                                    </router-link>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-3 text-center">
-                                <div class="mt-100">&nbsp;</div>
-                                <div class="mt-100">&nbsp;</div>
-                                <div class="mt-70">&nbsp;</div>
-                                <div v-for="team in tournament.teams" v-if="[2].includes(team.id)" class="team-bracket">
-                                    <router-link  :to="{ name: 'team', params: { id: team.id }}" class="vm-title text-left">
-                                        <img :src="getImageLink(team.image, 'avatar_team')" class="img-responsive team-image w-25px" :alt="team.title" />
-                                        <span class="ml-10">{{team.title}}</span>
-                                    </router-link>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <div role="tabpanel" class="tab-pane fade" id="tabs-1-5">
                         <div class="nk-gap"></div>
                         <div class="row mt-30">
-                            <div class="col-lg-12 text-center">
-                                <img src="/images/banner_asus.png" class="w-100">
-                            </div>
-                        </div>
-                        <div class="row mt-30">
-                            <div class="col-lg-12 text-center">
-                                <img src="/images/rekl_8.png" class="w-100">
+                            <div class="col-lg-12 text-white" :v-html="tournament.rules">
                             </div>
                         </div>
                     </div>

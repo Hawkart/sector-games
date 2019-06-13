@@ -50,8 +50,7 @@
 						</td>
 						<td class="text-center">{{moment(tournament.start_at, "YYYY-MM-DD h:mm:ss").format('D MMM, HH:mm') }} МСК</td>
 						<td class="text-center">{{moment(tournament.register_start, "YYYY-MM-DD h:mm:ss").format('D MMM, HH:mm') }} МСК</td>
-						<!--<td class="text-center">{{tournament.teams.length}} / {{ tournament.count_teams}}</td>-->
-						<td class="text-center">{{tournament.teams.length}} / 175</td>
+						<td class="text-center">{{tournament.teams.length}} / {{ tournament.count_teams}}</td>
 						<td>
 							<div class="input-group mt-5">
 								<button @click="register" v-if="checkRegisterStart(tournament.register_start) && checkRegisterEnd(tournament.register_start)" class="btn btn-primary btn-xs">Зарегистрироваться</button>
@@ -154,6 +153,7 @@
 							tournaments.forEach(function(tournament)
 							{
 								tournament.start_at = _self.dateConvertUTC(tournament.start_at, -1);
+								tournament.register_start = _self.dateConvertUTC(tournament.register_start, -1);
 							});
 						}
                         
