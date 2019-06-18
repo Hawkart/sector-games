@@ -29,7 +29,7 @@
                 <div class="nk-match" v-for="fight in fights" v-if="fight.invitations!=null">
                     <div class="nk-match-team-left">
 
-                        <router-link  :to="{ name: 'team', params: { id: fight.invitations[0].team.id }}">
+                        <router-link  :to="{ name: 'team', params: { id: fight.invitations[0].team.id }}" v-if="fight.invitations[0].team!=null">
                             <span class="nk-match-team-logo">
                                 <img :src="getImageLink(fight.invitations[0].team.image, 'avatar_team')" class="w-64px mr-10"/>
                             </span>
@@ -72,7 +72,7 @@
                         </router-link>
                     </div>
                     <div class="nk-match-team-right">
-                        <router-link  :to="{ name: 'team', params: { id: fight.invitations[1].team.id }}">
+                        <router-link  :to="{ name: 'team', params: { id: fight.invitations[1].team.id }}" v-if="fight.invitations[1].team!=null">
                             <span class="nk-match-team-name">
                                 <template v-if="fight.invitations[1].team.institution!=null">
                                     {{fight.invitations[1].team.institution.title}}, {{fight.invitations[1].team.institution.location.title}},<br/>

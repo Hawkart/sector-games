@@ -109,6 +109,8 @@
                         <div class="nk-gap"></div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="tabs-1-4">
+                        <div class="nk-gap"></div>
+                        <brackets></brackets>
                     </div>
 
                     <div role="tabpanel" class="tab-pane fade" id="tabs-1-5">
@@ -132,9 +134,10 @@
     import { loadMessages } from '~/plugins/i18n'
     import Vue from 'vue'
     import MatchList from "../../components/MatchList";
+    import Brackets from "../../components/Brackets";
 
     export default {
-        components: {MatchList},
+        components: {Brackets, MatchList},
         metaInfo () {
             return {
                 title: this.title,
@@ -155,7 +158,8 @@
                 if(this.tournament.teams!=undefined && this.tournament.teams.length>0)
                 {
                     this.tournament.teams.forEach(function (team) {
-                        teamsInTournament.push(team.id);
+                        if(team.length>0)
+                            teamsInTournament.push(team.id);
                     });
                 }
 
@@ -163,6 +167,7 @@
             }
         },
         mounted() {
+            //this.getTournamentBrackets();
             this.getTournament();
         },
         data : function() {
@@ -180,11 +185,7 @@
                 status_id: null,
                 success: false,
                 error: false,
-                response: null,
-                groups: [
-                    {teams: [146, 131, 181, 2, 73], title: "Восточная конференция"},
-                    {teams: [252, 167, 109, 110, 220], title: "Западная конференция"}
-                ]
+                response: null
             }
         },
         methods : {
@@ -215,7 +216,7 @@
                     this.$meta().refresh();
 
                     this.getTournamentTeams();
-                    this.getTournamentBrackets();
+                    //this.getTournamentBrackets();
 
                 } catch (e) {
                     this.errors.push(e);
@@ -229,15 +230,6 @@
                     });
                     const response = await axios.get('/api/tournaments/'+this.$route.params.id+"/teams?"+query);
                     this.$set(this.tournament, 'teams', response.data);
-                } catch (e) {
-                    this.errors.push(e);
-                }
-            },
-            async getTournamentBrackets()
-            {
-                try {
-                    const response = await axios.get('/api/tournaments/'+this.$route.params.id+"/brackets");
-                    this.$set(this.tournament, 'brackets', response.data);
                 } catch (e) {
                     this.errors.push(e);
                 }
