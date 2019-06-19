@@ -29,7 +29,7 @@
     {{-- Global configuration object --}}
     <script>
         window.config = {!! json_encode([
-            'appName' => config('app.name'),
+            'appName' => 'Sector Esports Tournament',
             'appLogo' => asset('/images/logo.png'),
             'appLogo_2' => asset('/images/logo.png'),
             'locale' => $locale = app()->getLocale(),

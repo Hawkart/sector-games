@@ -75,10 +75,6 @@
             </router-link>
 
             <ul class="nk-nav nk-nav-right d-none d-lg-table-cell">
-
-              <!--<li>
-                <router-link :to="{ name: 'tournament_2018' }">{{ $t('school_tournament_2018') }}</router-link>
-              </li>-->
               <li>
                 <router-link :to="{ name: 'tournaments' }">{{ $t('tournaments') }}</router-link>
               </li>
@@ -117,15 +113,18 @@
     <div id="nk-nav-mobile" class="nk-navbar nk-navbar-overlay-content"  v-bind:class="{ 'd-none': !showMobileMenu }">
 		<div class="nk-navbar-mobile-content">
 			<ul class="nk-nav">
-			  <li>
-				<router-link :to="{ name: 'tournament_2018' }">{{ $t('school_tournament_2018') }}</router-link>
-			  </li>
-			  <li>
-				<router-link :to="{ name: 'teams' }">{{ $t('teams') }}</router-link>
-			  </li>
-			  <li>
-				<router-link :to="{ name: 'players' }">{{ $t('players') }}</router-link>
-			  </li>
+              <li>
+                <router-link :to="{ name: 'tournaments' }">{{ $t('tournaments') }}</router-link>
+              </li>
+              <li>
+                <router-link :to="{ name: 'teams' }">{{ $t('teams') }}</router-link>
+              </li>
+              <li>
+                <router-link :to="{ name: 'players' }">{{ $t('players') }}</router-link>
+              </li>
+              <li>
+                <router-link :to="{ name: 'faq' }">{{ $t('faq') }}</router-link>
+              </li>
 			</ul>
 		</div>
 	</div>
