@@ -7,7 +7,7 @@
 
 	 <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'SECTOR ESPORTS TOURNAMENT') }}</title>
+    <title>Sector Esports</title>
     
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="{{ asset('/images/sector_32_32.png') }}">
@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7cOpen+Sans:400,700" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.10.1/bootstrap-social.css" rel="stylesheet">
 
-    <meta property="og:title" content="SECTOR ESPORTS TOURNAMENT">
+    <meta property="og:title" content="Sector Esports Tournament">
     <link rel="image_src" href="{{ asset('/images/sector_200_200.png') }}">
     <meta property="og:image" content="{{ asset('/images/sector_200_200.png') }}">
 </head>
