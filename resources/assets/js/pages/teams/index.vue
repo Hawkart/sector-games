@@ -63,9 +63,10 @@
                             <td class="text-center">
                                 <span v-if="team.status==0"><span class="text-warning">{{$t('status_pending')}}</span></span>
                                 <span v-if="team.status==1"><span class="text-success">{{$t('status_accepted')}}</span></span>
-                                <button v-if="team.quantity>team.users.length && authenticated && user.id!==team.capt_id && user.type=='player' && user.active" @click="joinTeam(team.id)" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white">
-                                    {{$t('join_team')}}
-                                </button>
+                                <button v-if="team.quantity>team.users.length && authenticated && user.id!==team.capt_id && user.type=='player' && user.active"
+                                        @click="joinTeam(team.id)"
+                                        class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white" v-html="$t('join_team')"
+                                ></button>
                             </td>
                         </tr>
                         </tbody>

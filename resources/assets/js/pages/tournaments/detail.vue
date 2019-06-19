@@ -65,7 +65,6 @@
                             <tbody>
                             <tr>
                                 <th>{{$t('title')}}</th>
-                                <th>{{$t('region')}}</th>
                                 <th>{{$t('players')}}</th>
                                 <th>{{$t('game')}}</th>
                                 <th>{{$t('count_matches')}}</th>
@@ -78,12 +77,6 @@
                                         <img :src="getImageLink(team.image, 'avatar_team')" class="w-50px mr-10" :alt="team.title" />
                                         <span>{{ team.title}}</span>
                                     </router-link>
-                                </td>
-                                <td>
-                                    <template v-if="team.institution_id>0">
-                                        {{team.institution.location.parent.title}},
-                                        {{team.institution.location.title}}
-                                    </template>
                                 </td>
                                 <td class="text-center"><router-link  :to="{ name: 'team.detail.players', params: { slug: team.slug }}">{{ team.users.length}}</router-link> / {{ team.quantity}}</td>
                                 <td class="text-center" v-if="team.game!==null">

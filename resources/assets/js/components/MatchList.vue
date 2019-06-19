@@ -34,9 +34,6 @@
                                 <img :src="getImageLink(fight.invitations[0].team.image, 'avatar_team')" class="w-64px mr-10"/>
                             </span>
                             <span class="nk-match-team-name">
-                                <template v-if="fight.invitations[0].team.institution!=null">
-                                    {{fight.invitations[0].team.institution.title}}, {{fight.invitations[0].team.institution.location.title}},<br/>
-                                </template>
                                 {{ fight.invitations[0].team.title}}
                             </span>
                         </router-link>
@@ -45,8 +42,7 @@
                     <div class="nk-match-status">
                         <router-link  :to="{ name: 'match', params: { id: fight.id }}">
                             <span class="nk-match-status-vs">
-                                <template v-if="fight.id==24">VS (bo5)</template>
-                                <template v-else>VS (bo3)</template>
+                                <template>VS (bo3)</template>
                             </span>
                             <span class="nk-match-status-date">{{ moment.utc(fight.start_at, "YYYY-MM-DD h:mm:ss").format('MMMM Do, HH:mm') }} МСК</span>
 
@@ -74,9 +70,6 @@
                     <div class="nk-match-team-right">
                         <router-link  :to="{ name: 'team', params: { id: fight.invitations[1].team.id }}" v-if="fight.invitations[1].team!=null">
                             <span class="nk-match-team-name">
-                                <template v-if="fight.invitations[1].team.institution!=null">
-                                    {{fight.invitations[1].team.institution.title}}, {{fight.invitations[1].team.institution.location.title}},<br/>
-                                </template>
                                 {{ fight.invitations[1].team.title}}
                             </span>
                             <span class="nk-match-team-logo">

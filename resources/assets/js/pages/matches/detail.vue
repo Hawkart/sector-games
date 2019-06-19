@@ -11,7 +11,6 @@
                                 <img :src="getImageLink(fight.invitations[0].team.image, 'avatar_team')" class="w-64px mr-10"/>
                             </span>
                             <span class="nk-match-team-name">
-                                {{fight.invitations[0].team.institution.title}}, {{fight.invitations[0].team.institution.location.title}},<br/>
                                 {{ fight.invitations[0].team.title}}
                             </span>
                         </router-link>
@@ -20,8 +19,7 @@
                     <div class="nk-match-status">
                         <router-link  :to="{ name: 'match', params: { id: fight.id }}">
                             <span class="nk-match-status-vs">
-                                <template v-if="fight.id==24">VS (bo5)</template>
-                                <template v-else>VS (bo3)</template>
+                                <template>VS (bo1)</template>
                             </span>
                             <span class="nk-match-status-date">{{ moment.utc(fight.start_at, "YYYY-MM-DD h:mm:ss").format('MMMM Do, HH:mm') }} МСК</span>
 
@@ -30,27 +28,28 @@
                             </template>
                             <template v-else-if="fight.winner_id>0 && fight.result!=null">
                                 <span class="nk-match-score bg-dark-1">
-                                <template v-if="parseInt(fight.result[0])>parseInt(fight.result[1]) && fight.invitations[0].team.id==fight.winner_id">
-                                    {{fight.result[0]}} : {{fight.result[1]}}
-                                </template>
-                                <template v-else-if="parseInt(fight.result[1])>parseInt(fight.result[0]) && fight.invitations[1].team.id==fight.winner_id">
-                                    {{fight.result[0]}} : {{fight.result[1]}}
-                                </template>
-                                <template v-else>
-                                    {{fight.result[1]}} : {{fight.result[0]}}
-                                </template>
+                                    <span v-if="fight.result!=null">
+                                        <template v-if="parseInt(fight.result[0])>parseInt(fight.result[1]) && fight.invitations[0].team.id==fight.winner_id">
+                                            {{fight.result[0]}} : {{fight.result[1]}}
+                                        </template>
+                                        <template v-else-if="parseInt(fight.result[1])>parseInt(fight.result[0]) && fight.invitations[1].team.id==fight.winner_id">
+                                            {{fight.result[0]}} : {{fight.result[1]}}
+                                        </template>
+                                        <template v-else>
+                                            {{fight.result[1]}} : {{fight.result[0]}}
+                                        </template>
+                                    </span>
+                                    <span v-else>0 : 0</span>
                                 </span>
                             </template>
                             <template v-else>
                                 <span class="nk-match-score bg-success">{{$t('online')}}</span>
                             </template>
-
                         </router-link>
                     </div>
                     <div class="nk-match-team-right">
                         <router-link  :to="{ name: 'team', params: { id: fight.invitations[1].team.id }}">
                             <span class="nk-match-team-name">
-                                {{fight.invitations[1].team.institution.title}}, {{fight.invitations[1].team.institution.location.title}},<br/>
                                 {{ fight.invitations[1].team.title}}
                             </span>
                             <span class="nk-match-team-logo">
@@ -76,13 +75,13 @@
             </div>
         </div>-->
 
-        <div class="row mt-20">
+        <!--<div class="row mt-20">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="responsive-embed responsive-embed-16x9">
                     <iframe src="https://player.twitch.tv/?channel=youthleagueru" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
                 </div>
             </div>
-        </div>
+        </div>-->
 
         <div class="row mt-10 mb-30" v-if="chat!==null && (fight.invitations[0].team.capt_id==user.id || fight.invitations[1].team.capt_id==user.id || fight.judge_id==user.id || user.role_id==1)">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -343,8 +342,8 @@
                                     }
                                 });
                             }else{
-                                this.result_1 = this.fight.result[0];
-                                this.result_2 = this.fight.result[1];
+                                this.result_1 = this.fight.result!=null ? this.fight.result[0]: 0;
+                                this.result_2 = this.fight.result!=null ? this.fight.result[1] : 0;
                                 this.winner_id = this.fight.winner_id;
                             }
 

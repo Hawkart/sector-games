@@ -3,13 +3,15 @@
         <div class="tournament-bracket__round tournament-bracket__round--quarterfinals" v-for="bracket in brackets.rounds" :key="bracket.round.id">
             <h3 class="tournament-bracket__round-title">{{bracket.round.title}}</h3>
             <ul class="tournament-bracket__list"
-                :class="countClass(bracket, brackets.type)"
+                :class="countClass(bracket, brackets.is_full)"
             >
                 <li class="tournament-bracket__item" v-for="match in bracket.matches" :key="match.id">
                     <div class="tournament-bracket__match" tabindex="0">
                         <table class="tournament-bracket__table">
                             <caption class="tournament-bracket__caption">
-                                {{match.title}}, <time datetime="1998-02-18">{{moment( convertTime(match.start_at), "YYYY-MM-DD h:mm:ss").format('D MMM, HH:mm') }} МСК</time>
+                                <router-link  :to="{ name: 'match', params: { id: match.id }}">
+                                    {{match.title}}, <time datetime="1998-02-18">{{moment( convertTime(match.start_at), "YYYY-MM-DD h:mm:ss").format('D MMM, HH:mm') }} МСК</time>
+                                </router-link>
                             </caption>
                             <thead class="sr-only">
                             <tr>
@@ -18,10 +20,9 @@
                             </tr>
                             </thead>
                             <tbody class="tournament-bracket__content">
-                                <tr class="tournament-bracket__team" :class="{' tournament-bracket__team--winner': (team.id!=undefined && team.id==match.winner_id)}" v-for="(team, index) in match.teams" :key="index" v-if="match.teams.length>0">
+                                <tr class="tournament-bracket__team" :class="{' tournament-bracket__team--winner': (team.id!=undefined && team.id==match.winner_id)}" v-for="(team, index) in match.teams" :key="index">
                                     <td class="tournament-bracket__country">
-                                        <abbr class="tournament-bracket__code" v-if="team.id!=undefined">{{team.title}}</abbr>
-                                        <abbr class="tournament-bracket__code" v-else>Winner of R{{bracket.round.number-1}}</abbr>
+                                        <abbr class="tournament-bracket__code">{{team.title}}</abbr>
                                         <span class="tournament-bracket__flag flag-icon"></span>
                                     </td>
                                     <td class="tournament-bracket__score">
@@ -29,27 +30,6 @@
                                         <span class="tournament-bracket__number" v-else>0</span>
                                     </td>
                                 </tr>
-                                <template v-else>
-                                    <tr class="tournament-bracket__team">
-                                        <td class="tournament-bracket__country">
-                                            <abbr class="tournament-bracket__code">Winner of R{{bracket.round.number-1}}</abbr>
-                                            <span class="tournament-bracket__flag flag-icon"></span>
-                                        </td>
-                                        <td class="tournament-bracket__score">
-                                            <span class="tournament-bracket__number">0</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="tournament-bracket__team">
-                                        <td class="tournament-bracket__country">
-                                            <abbr class="tournament-bracket__code">Winner of R{{bracket.round.number-1}}</abbr>
-                                            <span class="tournament-bracket__flag flag-icon"></span>
-                                        </td>
-                                        <td class="tournament-bracket__score">
-                                            <span class="tournament-bracket__number">0</span>
-                                        </td>
-                                    </tr>
-                                </template>
-
                             </tbody>
                         </table>
                     </div>

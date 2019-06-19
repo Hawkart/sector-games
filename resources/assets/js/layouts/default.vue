@@ -14,8 +14,8 @@
 
       <gfooter></gfooter>
 
-      <img class="nk-page-background-top" src="../../images/bg-top.png" alt="">
-      <img class="nk-page-background-bottom" src="../../images/bg-bottom.png" alt="">
+      <!--<img class="nk-page-background-top" src="../../images/bg-top.png" alt="">
+      <img class="nk-page-background-bottom" src="../../images/bg-bottom.png" alt="">-->
 
       <!--<chat :channels="channels" v-if="authenticated && channels!==null"></chat>-->
     </div>
