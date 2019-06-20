@@ -10,7 +10,7 @@
                         <table class="tournament-bracket__table">
                             <caption class="tournament-bracket__caption">
                                 <router-link  :to="{ name: 'match', params: { id: match.id }}">
-                                    {{match.title}}, <time datetime="1998-02-18">{{moment( convertTime(match.start_at), "YYYY-MM-DD h:mm:ss").format('D MMM, HH:mm') }} МСК</time>
+                                    {{match.title}}, <time :datetime="moment( convertTime(match.start_at), 'YYYY-MM-DD h:mm:ss').format('YYYY-MM-DD')">{{moment( convertTime(match.start_at), "YYYY-MM-DD h:mm:ss").format('D MMM, HH:mm') }} МСК</time>
                                 </router-link>
                             </caption>
                             <thead class="sr-only">
@@ -22,8 +22,17 @@
                             <tbody class="tournament-bracket__content">
                                 <tr class="tournament-bracket__team" :class="{' tournament-bracket__team--winner': (team.id!=undefined && team.id==match.winner_id)}" v-for="(team, index) in match.teams" :key="index">
                                     <td class="tournament-bracket__country">
-                                        <abbr class="tournament-bracket__code">{{team.title}}</abbr>
-                                        <span class="tournament-bracket__flag flag-icon"></span>
+                                        <span class="tournament-bracket__flag">
+                                            <img :src="getImageLink(team.image, 'avatar_team')" :alt="team.title" v-if="team.id>0" />
+                                        </span>
+                                        <span class="tournament-bracket__code">
+                                            <router-link  :to="{ name: 'team', params: { id: team.id }}" v-if="team.id>0">
+                                                {{team.title}}
+                                            </router-link>
+                                            <span v-else>
+                                                {{team.title}}
+                                            </span>
+                                        </span>
                                     </td>
                                     <td class="tournament-bracket__score">
                                         <span class="tournament-bracket__number" v-if="match.winner_id>0">{{match.result[index]}}</span>

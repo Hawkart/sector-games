@@ -19,6 +19,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#tabs-1-4" role="tab" data-toggle="tab">Сетка</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tabs-1-6" role="tab" data-toggle="tab">Призы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tabs-1-7" role="tab" data-toggle="tab" v-if="tournament.status==3">Победители</a>
+                    </li>
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade show active" id="tabs-1-1">
@@ -113,6 +119,23 @@
                             </div>
                         </div>
                     </div>
+                    <div role="tabpanel" class="tab-pane fade" id="tabs-1-6">
+                        <div class="nk-gap"></div>
+                        <div class="row mt-30">
+                            <div class="col-lg-12 text-white" v-html="tournament.prizes">
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="tabs-1-7" v-if="tournament.status==3">
+                        <div class="nk-gap"></div>
+                        <div class="row mt-30">
+                            <div class="col-lg-12 text-white">
+                                <div v-for="(winner, index) in winners" :key="winner.id">
+                                    {{index+1}} - {{winner.title}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -178,7 +201,8 @@
                 status_id: null,
                 success: false,
                 error: false,
-                response: null
+                response: null,
+                winners: []
             }
         },
         methods : {
@@ -195,7 +219,7 @@
                     this.tournament.register_start = this.dateConvertUTC(this.tournament.register_start, -1);
 
                     //count prizes
-                    var winners_part = this.tournament.winners_part.split(",");
+                    /*var winners_part = this.tournament.winners_part.split(",");
                     var prize_pool = parseInt(this.tournament.prize_pool);
                     var prizes = [];
 
@@ -204,12 +228,15 @@
                         prizes.push(parseInt(part)*prize_pool/100);
                     });
 
-                    this.tournament.prizes = prizes;
+                    this.tournament.prizes = prizes;*/
                     this.title = this.tournament.title;
                     this.$meta().refresh();
 
                     this.getTournamentTeams();
                     //this.getTournamentBrackets();
+
+                    if(this.tournament.status==3)
+                        this.getTournamentWinners();
 
                 } catch (e) {
                     this.errors.push(e);
@@ -223,6 +250,15 @@
                     });
                     const response = await axios.get('/api/tournaments/'+this.$route.params.id+"/teams?"+query);
                     this.$set(this.tournament, 'teams', response.data);
+                } catch (e) {
+                    this.errors.push(e);
+                }
+            },
+            async getTournamentWinners()
+            {
+                try {
+                    const response = await axios.get('/api/tournaments/'+this.$route.params.id+"/winners");
+                    this.$set(this, 'winners', response.data);
                 } catch (e) {
                     this.errors.push(e);
                 }
