@@ -1,5 +1,5 @@
 {
-	"authHost": "http://games.local",
+	"authHost": "https://sparta.games",
 	"authEndpoint": "/broadcasting/auth",
 	"clients": [],
 	"database": "redis",
@@ -9,13 +9,13 @@
 			"databasePath": "/database/laravel-echo-server.sqlite"
 		}
 	},
-	"devMode": true,
+	"devMode": false,
 	"host": null,
 	"port": "6002",
-	"protocol": "http",
+	"protocol": "https",
 	"socketio": {},
-	"sslCertPath": "",
-	"sslKeyPath": "",
+	"sslCertPath": "/home/bitrix/conf/web/ssl.sector.games.crt",
+	"sslKeyPath": "/home/bitrix/conf/web/ssl.sector.games.key",
 	"sslCertChainPath": "",
 	"sslPassphrase": "",
 	"apiOriginAllow": {
