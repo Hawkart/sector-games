@@ -234,6 +234,157 @@ Vue.mixin({
             }
 
             return slug;
+        },
+        slickBracketInit: function(){
+            $('.tournament-list').slick({
+                infinite: false,
+                arrows: false,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                speed: 300,
+                swipe: false,
+                responsive: [
+                    {
+                        breakpoint: 1440,
+                        settings: {
+                            slidesToShow: 3,
+                        }
+                    },{
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 2,
+                        }
+                    },{
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1,
+                        }
+                    },{
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            speed: 100,
+                        }
+                    }
+                ]
+            }).on('afterChange', function(event, slick, currentSlide) {
+                var current = currentSlide,
+                    visible = 4,
+                    count = slick.slideCount;
+                for (var i = 0; i < slick.originalSettings.responsive.length; i++) {
+                    if (slick.originalSettings.responsive[i].breakpoint == slick.activeBreakpoint) {
+                        visible = slick.originalSettings.responsive[i].settings.slidesToShow;
+                    }
+                }
+                toggleSliderArr(current, visible, count);
+                toggleRound(current);
+            });
+
+            $('.tournament-nav__list').slick({
+                infinite: false,
+                arrows: false,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                speed: 300,
+                swipe: false,
+                responsive: [
+                    {
+                        breakpoint: 1440,
+                        settings: {
+                            slidesToShow: 3,
+                        }
+                    },{
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 2,
+                        }
+                    },{
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1,
+                        }
+                    },{
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            speed: 100,
+                        }
+                    }
+                ]
+            });
+
+            $('.tournament-head__list').slick({
+                infinite: false,
+                arrows: false,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                speed: 300,
+                swipe: false,
+                responsive: [
+                    {
+                        breakpoint: 1440,
+                        settings: {
+                            slidesToShow: 3,
+                        }
+                    },{
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 2,
+                        }
+                    },{
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1,
+                        }
+                    },{
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            speed: 100,
+                        }
+                    }
+                ]
+            });
+
+            function toggleSliderArr(current, visible, count) {
+                if (current == 0) {
+                    $('.tournament-head__arr-prev, .tournament-nav__arr-prev').addClass('disabled');
+                } else{
+                    $('.tournament-head__arr-prev, .tournament-nav__arr-prev').removeClass('disabled');
+                }
+                if (current == (count - visible)) {
+                    $('.tournament-head__arr-next, .tournament-nav__arr-next').addClass('disabled');
+                } else{
+                    $('.tournament-head__arr-next, .tournament-nav__arr-next').removeClass('disabled');
+                }
+            }
+
+            function toggleRound(index){
+                $('.tournament-nav__round-box').removeClass('active');
+                $('.tournament-nav__round-box[data-round="' + (index + 1) + '"]').addClass('active');
+                if($(window).width() <= 767){
+                    $('.tournament-head__list, .tournament-nav__list, .tournament-list').slick('slickGoTo', index);
+                }
+            }
+
+            if ($('.tournament-list').length) {
+                var current = 0,
+                    visible = $('.tournament-list .slick-active').length,
+                    count = $('.tournament-list .slick-slide').length;
+                toggleSliderArr(current, visible, count);
+            }
+
+            $(document).on('click', '.tournament-head__arr-prev, .tournament-nav__arr-prev', function() {
+                $('.tournament-head__list, .tournament-nav__list, .tournament-list').slick('slickPrev');
+            });
+            $(document).on('click', '.tournament-head__arr-next, .tournament-nav__arr-next', function() {
+                $('.tournament-head__list, .tournament-nav__list, .tournament-list').slick('slickNext');
+            });
+            $(document).on('click', '.tournament-nav__round-box', function() {
+                var $this = $(this),
+                    index = parseInt($this.attr('data-round')) - 1;
+                toggleRound(index);
+            });
         }
     }
 });

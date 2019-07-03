@@ -1,18 +1,18 @@
-const path = require('path')
-const mix = require('laravel-mix')
+const path = require('path');
+const mix = require('laravel-mix');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
-mix.config.vue.esModule = true
+mix.config.vue.esModule = true;
 
 mix
     .js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/app.scss', 'public/css')
 
     .sourceMaps()
-    .disableNotifications()
+    .disableNotifications();
 
 if (mix.inProduction) {
-    mix.version()
+    mix.version();
   
     mix.extract([
         'vue',
@@ -35,7 +35,7 @@ if (mix.inProduction) {
         'vuex-router-sync',
         '@fortawesome/fontawesome',
         '@fortawesome/vue-fontawesome'
-    ])
+    ]);
 }
 
 mix.webpackConfig({

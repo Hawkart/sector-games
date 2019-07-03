@@ -1,49 +1,82 @@
 <template>
-    <div class="tournament-bracket tournament-bracket--rounded">
-        <div class="tournament-bracket__round tournament-bracket__round--quarterfinals" v-for="bracket in brackets.rounds" :key="bracket.round.id">
-            <h3 class="tournament-bracket__round-title">{{bracket.round.title}}</h3>
-            <ul class="tournament-bracket__list"
-                :class="countClass(bracket, brackets.is_full)"
-            >
-                <li class="tournament-bracket__item" v-for="match in bracket.matches" :key="match.id">
-                    <div class="tournament-bracket__match" tabindex="0">
-                        <table class="tournament-bracket__table">
-                            <caption class="tournament-bracket__caption">
-                                <router-link  :to="{ name: 'match', params: { id: match.id }}">
-                                    {{match.title}}, <time :datetime="moment( convertTime(match.start_at), 'YYYY-MM-DD h:mm:ss').format('YYYY-MM-DD')">{{moment( convertTime(match.start_at), "YYYY-MM-DD h:mm:ss").format('D MMM, HH:mm') }} МСК</time>
-                                </router-link>
-                            </caption>
-                            <thead class="sr-only">
-                            <tr>
-                                <th>Team</th>
-                                <th>Score</th>
-                            </tr>
-                            </thead>
-                            <tbody class="tournament-bracket__content">
-                                <tr class="tournament-bracket__team" :class="{' tournament-bracket__team--winner': (team.id!=undefined && team.id==match.winner_id)}" v-for="(team, index) in match.teams" :key="index">
-                                    <td class="tournament-bracket__country">
-                                        <span class="tournament-bracket__flag">
-                                            <img :src="getImageLink(team.image, 'avatar_team')" :alt="team.title" v-if="team.id>0" />
-                                        </span>
-                                        <span class="tournament-bracket__code">
-                                            <router-link  :to="{ name: 'team', params: { id: team.id }}" v-if="team.id>0">
-                                                {{team.title}}
-                                            </router-link>
-                                            <span v-else>
-                                                {{team.title}}
-                                            </span>
-                                        </span>
-                                    </td>
-                                    <td class="tournament-bracket__score">
-                                        <span class="tournament-bracket__number" v-if="match.winner_id>0">{{match.result[index]}}</span>
-                                        <span class="tournament-bracket__number" v-else>0</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+    <div class="tournament">
+        <div class="tournament-nav hidden">
+            <div class="tournament-nav__list">
+                <div class="tournament-nav__round" v-for="bracket in brackets.rounds" :key="'high-nav-'+bracket.round.id">
+                    <div class="tournament-nav__round-box" :class="{'active': bracket.round.number==1}" :data-round="bracket.round.number">{{bracket.round.title}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="tournament-head">
+            <div class="tournament-head__arr">
+                <div class="tournament-head__arr-prev disabled">
+                    <img src="/images/arr-left.svg" alt="">
+                </div>
+                <div class="tournament-head__arr-next">
+                    <img src="/images/arr-right.svg" alt="">
+                </div>
+            </div>
+            <div class="tournament-head__list">
+                <div class="tournament-head__round" v-for="bracket in brackets.rounds" :key="'head-nav-'+bracket.round.id">
+                    <div class="tournament-head__round-box">
+                        <div class="tournament-head__round-title">{{bracket.round.title}}</div>
+                        <div class="tournament-head__round-info">
+                            <div class="tournament-head__round-date">
+                                <img src="/images/date.svg" alt="">
+                                <span>{{ moment( convertTime(bracket.round.datetime), 'YYYY-MM-DD h:mm:ss').format('DD.MM.YYYY') }}</span>
+                            </div>
+                            <div class="tournament-head__round-time">
+                                <img src="/images/clock.svg" alt="">
+                                <span>{{ moment( convertTime(bracket.round.datetime), 'YYYY-MM-DD h:mm:ss').format('h:mm') }}</span>
+                            </div>
+                        </div>
                     </div>
-                </li>
-            </ul>
+                </div>
+            </div>
+        </div>
+        <div class="tournament-body">
+            <div class="tournament-list">
+                <div class="tournament-list__round" v-for="bracket in brackets.rounds" :key="'tlist-'+bracket.round.id">
+                    <div class="tournament-list__group" :class="{'complete': match.winner_id>0}" v-for="match in bracket.matches" :key="'tlist-match-'+match.id">
+                        <div class="tournament-list__team" :class="{'win': (team.id!=undefined && team.id==match.winner_id)}" v-for="(team, index) in match.teams" :key="'tlist-match-team-'+match.id+'-'+index">
+                            <div class="tournament-list__team-box">
+                                <div class="tournament-list__team-text">
+                                    <div class="tournament-list__team-logo">
+                                        <img :src="getImageLink(team.image, 'avatar_team')" :alt="team.title" v-if="team.id>0" />
+                                    </div>
+                                    <div class="tournament-list__team-name">
+                                        <router-link  :to="{ name: 'team', params: { id: team.id }}" v-if="team.id>0">
+                                            {{team.title}}
+                                        </router-link>
+                                        <span v-else>
+                                            {{team.title}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="tournament-list__team-count">
+                                    <span v-if="match.winner_id>0">{{match.result[index]}}</span>
+                                    <span v-else>0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tournament-nav">
+            <div class="tournament-nav__arr">
+                <div class="tournament-nav__arr-prev disabled">
+                    <img src="/images/arr-left.svg" alt="">
+                </div>
+                <div class="tournament-nav__arr-next">
+                    <img src="/images/arr-right.svg" alt="">
+                </div>
+            </div>
+            <div class="tournament-nav__list">
+                <div class="tournament-nav__round" v-for="bracket in brackets.rounds" :key="'bottom-nav-'+bracket.round.id">
+                    <div class="tournament-nav__round-box" :class="{'active': bracket.round.number==1}" :data-round="bracket.round.number">{{bracket.round.title}}</div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -82,6 +115,8 @@
                 try {
                     const response = await axios.get('/api/tournaments/'+this.$route.params.id+"/brackets");
                     this.$set(this, 'brackets', response.data);
+
+                    this.bracketsSlinkInit();
                 } catch (e) {
                     this.errors.push(e);
                 }
@@ -103,6 +138,16 @@
                 }
 
                 return result;
+            },
+            bracketsSlinkInit()
+            {
+                /*Vue.nextTick(() => {
+                    this.slickBracketInit();
+                });*/
+                //setTimeout(function() {
+                    // this.slickBracketInit();
+                //}, 1000);
+
             }
         }
     }

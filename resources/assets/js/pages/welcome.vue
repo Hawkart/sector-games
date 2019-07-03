@@ -46,7 +46,9 @@
                     </div>
                     <div class="nk-feature-cont">
                         <h3 class="nk-feature-title">{{countTeams}}</h3>
-                        <h3 class="nk-feature-title text-main-1">{{$t('teams')}}</h3>
+                        <h3 class="nk-feature-title text-main-1">
+                            <router-link :to="{ name: 'teams' }">{{ $t('teams') }}</router-link>
+                        </h3>
                     </div>
                 </div>
             </div>
@@ -58,7 +60,9 @@
                     </div>
                     <div class="nk-feature-cont">
                         <h3 class="nk-feature-title">{{countPlayers}}</h3>
-                        <h4 class="nk-feature-title text-main-1">{{$t('players')}}</h4>
+                        <h4 class="nk-feature-title text-main-1">
+                            <router-link :to="{ name: 'players' }">{{ $t('players') }}</router-link>
+                        </h4>
                     </div>
                 </div>
             </div>
@@ -70,7 +74,9 @@
                     </div>
                     <div class="nk-feature-cont">
                         <h3 class="nk-feature-title">{{countSchools}}</h3>
-                        <h3 class="nk-feature-title text-main-1">{{$t('tournaments')}}</h3>
+                        <h3 class="nk-feature-title text-main-1">
+                            <router-link :to="{ name: 'tournaments' }">{{ $t('tournaments') }}</router-link>
+                        </h3>
                     </div>
                 </div>
             </div>

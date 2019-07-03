@@ -17,7 +17,7 @@
                         <a class="nav-link" href="#tabs-1-3" role="tab" data-toggle="tab">Матчи</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#tabs-1-4" role="tab" data-toggle="tab">Сетка</a>
+                        <a class="nav-link" href="#tabs-1-4" role="tab" data-toggle="tab" @click="initBrackets()">Сетка</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#tabs-1-6" role="tab" data-toggle="tab">Призы</a>
@@ -130,7 +130,7 @@
                         <div class="nk-gap"></div>
                         <div class="row mt-30">
                             <div class="col-lg-12 text-white">
-                                <div v-for="(winner, index) in winners" :key="winner.id">
+                                <div v-for="(winner, index) in winners" :key="'winers'-winner.id">
                                     {{index+1}} - {{winner.title}}
                                 </div>
                             </div>
@@ -316,6 +316,14 @@
                     return true;
 
                 return false;
+            },
+            initBrackets()
+            {
+                Vue.nextTick(() => {
+                    setTimeout(() => {
+                        this.slickBracketInit();
+                    }, 500);
+                });
             }
         }
     }
