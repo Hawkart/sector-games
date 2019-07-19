@@ -27,7 +27,7 @@
                     <router-link :to="{ name: 'privacy' }" class="text-white">{{ $t('privacy') }}</router-link>
                 </div>
                 <div class="nk-copyright-right">
-                    Copyright &copy; Powered by <a href="https://sparta.games" target="_blank">Sparta.Games</a>
+                    <!--Copyright &copy; Powered by <a href="https://sparta.games" target="_blank">Sparta.Games</a>-->
                 </div>
             </div>
         </div>
