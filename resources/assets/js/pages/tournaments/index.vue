@@ -53,8 +53,8 @@
 						<td class="text-center">{{tournament.teams.length}} / {{ tournament.count_teams}}</td>
 						<td>
 							<div class="input-group mt-5">
-								<button @click="register" v-if="checkRegisterStart(tournament.register_start) && checkRegisterEnd(tournament.register_start)" class="btn btn-primary btn-xs">Зарегистрироваться</button>
-								<button v-else-if="!checkRegisterEnd(tournament.register_start)" disabled class="btn btn-defualt btn-xs">Регистрация завершена</button>
+								<button @click="register" v-if="checkRegisterStart(tournament.register_start) && !checkRegisterEnd(tournament.register_start)" class="btn btn-primary btn-xs">Зарегистрироваться</button>
+								<button v-else-if="checkRegisterEnd(tournament.register_start)" disabled class="btn btn-defualt btn-xs">Регистрация завершена</button>
 							</div>
 						</td>
 					</tr>
