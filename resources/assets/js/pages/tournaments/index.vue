@@ -53,8 +53,8 @@
 						<td class="text-center">{{tournament.teams.length}} / {{ tournament.count_teams}}</td>
 						<td>
 							<div class="input-group mt-5">
-								<button @click="register" v-if="checkRegisterStart(tournament.register_start) && !checkRegisterNotEnd(tournament.start_at, tournament.register_start)" class="btn btn-primary btn-xs">Зарегистрироваться</button>
-								<button v-else-if="!checkRegisterNotEnd(tournament.start_at, tournament.register_start)" disabled class="btn btn-defualt btn-xs">Регистрация завершена</button>
+								<button @click="register" v-if="canRegister(tournament.start_at, tournament.register_start)" class="btn btn-primary btn-xs">Зарегистрироваться</button>
+								<button v-else-if="checkRegisterEnd(tournament.start_at)" disabled class="btn btn-defualt btn-xs">Регистрация завершена</button>
 							</div>
 						</td>
 					</tr>
@@ -163,13 +163,13 @@
                         this.pagination = response.data;
                     });
                 },
-                checkRegisterStart(register_start)
+				canRegister(start_at, register_start)
+				{
+					return this.moment(register_start).isBefore(this.moment.utc()) && this.moment(register_start).subtract(1, 'hours').isAfter(this.moment.utc());
+				},
+                checkRegisterEnd(start_at)
                 {
-                    return this.moment.utc().isAfter(register_start);
-                },
-                checkRegisterNotEnd(start_at, register_start)
-                {
-                    return this.moment(start_at).isBefore(this.moment(register_start).subtract(1, 'hours'));
+					return this.moment.utc().isAfter(this.moment(start_at).subtract(1, 'hours'));
                 },
                 register: function()
                 {
