@@ -165,7 +165,7 @@
                 },
 				canRegister(start_at, register_start)
 				{
-					return this.moment(register_start).isBefore(this.moment.utc()) && this.moment(register_start).subtract(1, 'hours').isAfter(this.moment.utc());
+					return this.moment(register_start).isBefore(this.moment.utc()) && this.moment(start_at).subtract(1, 'hours').isAfter(this.moment.utc());
 				},
                 checkRegisterEnd(start_at)
                 {
