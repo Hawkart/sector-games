@@ -104,6 +104,6 @@
     "vinyl-named": "^1.1.0",
     "vue-template-compiler": "^2.5.13",
     "vue2-collapse": "^1.0.12",
-    "webpack-bundle-analyzer": "^2.9.2"
+    "webpack-bundle-analyzer": "^3.3.2"
   }
 }
