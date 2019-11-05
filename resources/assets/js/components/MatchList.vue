@@ -44,7 +44,7 @@
                             <span class="nk-match-status-vs">
                                 <template>VS (bo3)</template>
                             </span>
-                            <span class="nk-match-status-date">{{ moment.utc(fight.start_at, "YYYY-MM-DD h:mm:ss").format('MMMM Do, HH:mm') }} МСК</span>
+                            <span class="nk-match-status-date">{{ moment.utc(fight.start_at, "YYYY-MM-DD h:mm:ss").format('MMMM Do, HH:mm') }} Msk</span>
 
                             <template v-if="checkUpcoming(fight.start_at)">
                                 <span class="nk-match-score">{{$t('upcoming')}}</span>
@@ -109,10 +109,10 @@
             return {
                 fights: [],
                 status_list: [
-                    {id:0, title: 'Все'},
-                    {id:1, title: 'Прошедшие'},
-                    {id:2, title: "Онлайн"},
-                    {id:3, title: "Предстоящие"}
+                    {id:0, title: this.$t('s_t_all')},
+                    {id:1, title: this.$t('s_t_finished')},
+                    {id:2, title: this.$t('s_t_online')},
+                    {id:3, title: this.$t('s_t_future')}
                 ],
                 status_id: null,
                 pagination: []
@@ -128,7 +128,7 @@
             var _self = this;
             Vue.nextTick(function() {
                 $("#status_list").select2({
-                    placeholder: "Статус матча"
+                    placeholder: _self.$t('status')
                 }).on("change", function (e) {
                     _self.status_id = $(e.currentTarget).find("option:selected").val();
                 });

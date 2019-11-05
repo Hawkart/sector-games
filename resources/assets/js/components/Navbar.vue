@@ -15,9 +15,9 @@
       <div class="nk-contacts-top">
         <div class="container">
           <div class="nk-contacts-left">
-            <ul class="navbar-nav">
+            <!--<ul class="navbar-nav">
               <locale-dropdown/>
-            </ul>
+            </ul>-->
           </div>
           <div class="nk-contacts-right">
 

@@ -5,25 +5,25 @@
             <div class="nk-tabs">
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#tabs-1-1" role="tab" data-toggle="tab">Лобби</a>
+                        <a class="nav-link active" href="#tabs-1-1" role="tab" data-toggle="tab">{{$t('lobby')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#tabs-1-5" role="tab" data-toggle="tab">Правила</a>
+                        <a class="nav-link" href="#tabs-1-5" role="tab" data-toggle="tab">{{$t('rules')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#tabs-1-2" role="tab" data-toggle="tab">Команды</a>
+                        <a class="nav-link" href="#tabs-1-2" role="tab" data-toggle="tab">{{$t('teams')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#tabs-1-3" role="tab" data-toggle="tab">Матчи</a>
+                        <a class="nav-link" href="#tabs-1-3" role="tab" data-toggle="tab">{{$t('matches')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#tabs-1-4" role="tab" data-toggle="tab" @click="initBrackets()">Сетка</a>
+                        <a class="nav-link" href="#tabs-1-4" role="tab" data-toggle="tab" @click="initBrackets()">{{$t('brackets')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#tabs-1-6" role="tab" data-toggle="tab">Призы</a>
+                        <a class="nav-link" href="#tabs-1-6" role="tab" data-toggle="tab">{{$t('prizes')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#tabs-1-7" role="tab" data-toggle="tab" v-if="tournament.status==3">Победители</a>
+                        <a class="nav-link" href="#tabs-1-7" role="tab" data-toggle="tab" v-if="tournament.status==3">{{$t('winners')}}</a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -39,9 +39,9 @@
                                     <div class="col-lg-6">
                                         <dl>
                                             <dt class="mb-5">{{$t('tournament_start_time')}}:</dt>
-                                            <dd class="mb-15 txt-dark font-13 weight-500">{{moment(tournament.start_at, "YYYY-MM-DD h:mm:ss").format('D MMM, HH:mm') }} МСК</dd>
+                                            <dd class="mb-15 txt-dark font-13 weight-500">{{moment(tournament.start_at, "YYYY-MM-DD h:mm:ss").format('D MMM, HH:mm') }} Msk</dd>
                                             <dt class="mb-5">{{$t('reg_until')}}:</dt>
-                                            <dd class="mb-10 txt-dark font-13 weight-500">{{moment(tournament.start_at, "YYYY-MM-DD h:mm:ss").subtract(1, 'hours').format('D MMM, HH:mm') }} МСК</dd>
+                                            <dd class="mb-10 txt-dark font-13 weight-500">{{moment(tournament.start_at, "YYYY-MM-DD h:mm:ss").subtract(1, 'hours').format('D MMM, HH:mm') }} Msk</dd>
                                         </dl>
                                     </div>
                                     <div class="col-lg-6">
@@ -192,10 +192,10 @@
                 tournament: null,
                 fights: null,
                 status_list: [
-                    {id:0, title: 'Все'},
-                    {id:1, title: 'Прошедшие'},
-                    {id:2, title: "Онлайн"},
-                    {id:3, title: "Предстоящие"}
+                    {id:0, title: this.$t('s_t_all')},
+                    {id:1, title: this.$t('s_t_finished')},
+                    {id:2, title: this.$t('s_t_online')},
+                    {id:3, title: this.$t('s_t_future')}
                 ],
                 match_filter: {'tournament_id': this.$route.params.id},
                 status_id: null,

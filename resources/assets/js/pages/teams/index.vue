@@ -108,7 +108,7 @@
             var _self = this;
             Vue.nextTick(function() {
                 $("#status_list").select2({
-                    placeholder: "Статус"
+                    placeholder: _self.$t('status')
                 }).on("change", function (e) {
                     _self.status_id = $(e.currentTarget).find("option:selected").val();
                 });

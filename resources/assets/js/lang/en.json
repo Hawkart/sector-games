@@ -7,6 +7,7 @@
   "token_expired_alert_text": "Please log in again to continue.",
   "login": "Log In",
   "register": "Register",
+  "register_finished": "Register finished",
   "page_not_found": "Page Not Found",
   "go_home": "Go Home",
   "logout": "Logout",
@@ -120,5 +121,15 @@
   "winner": "The winner",
   "no_results": "no results found.",
   "reg_until": "Check-in until",
-  "privacy": "Privacy"
+  "privacy": "Privacy",
+  "s_t_all" : "All",
+  "s_t_finished" : "Finished",
+  "s_t_online": "Online",
+  "s_t_future": "Future",
+  "tournament_start_time" : "Start time",
+  "lobby" : "Lobby",
+  "rules" : "Rules",
+  "brackets" : "Brackets",
+  "winners": "Winners",
+  "prizes" : "Prizes"
 }

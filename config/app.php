@@ -64,7 +64,7 @@ return [
     | to any of the locales which will be supported by the application.
     |
     */
-    'locale' => 'ru',
+    'locale' => 'en',
     'locales' => [
         'en' => 'EN',
         'ru' => 'RU'
@@ -82,7 +82,7 @@ return [
     | the language folders that are provided through your application.
     |
     */
-    'fallback_locale' => 'ru',
+    'fallback_locale' => 'en',
     /*
     |--------------------------------------------------------------------------
     | Encryption Key

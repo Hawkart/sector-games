@@ -53,8 +53,8 @@
 						<td class="text-center">{{tournament.teams.length}} / {{ tournament.count_teams}}</td>
 						<td>
 							<div class="input-group mt-5">
-								<button @click="register" v-if="canRegister(tournament.start_at, tournament.register_start)" class="btn btn-primary btn-xs">Зарегистрироваться</button>
-								<button v-else-if="checkRegisterEnd(tournament.start_at)" disabled class="btn btn-defualt btn-xs">Регистрация завершена</button>
+								<button @click="register" v-if="canRegister(tournament.start_at, tournament.register_start)" class="btn btn-primary btn-xs">{{$t('register')}}</button>
+								<button v-else-if="checkRegisterEnd(tournament.start_at)" disabled class="btn btn-defualt btn-xs">{{$t('register_finished')}}</button>
 							</div>
 						</td>
 					</tr>
@@ -86,10 +86,10 @@
                 tournaments: [],
                 pagination: [],
                 status_list: [
-                    {id:0, title: 'Все'},
-                    {id:1, title: 'Прошедшие'},
-                    {id:2, title: "Онлайн"},
-                    {id:3, title: "Предстоящие"}
+                    {id:0, title: this.$t('s_t_all')},
+                    {id:1, title: this.$t('s_t_finished')},
+                    {id:2, title: this.$t('s_t_online')},
+                    {id:3, title: this.$t('s_t_future')}
                 ],
                 status_id: null,
             }
@@ -110,7 +110,7 @@
             var _self = this;
             Vue.nextTick(function() {
                 $("#status_list").select2({
-                    placeholder: "Статус турнира"
+                    placeholder: _self.$t('status')
                 }).on("change", function (e) {
                     _self.status_id = $(e.currentTarget).find("option:selected").val();
                 });
