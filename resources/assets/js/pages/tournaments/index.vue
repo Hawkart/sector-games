@@ -140,7 +140,9 @@
                         queryStartParams['end_at'] = null;
                     }else if(this.status_id==3){
                         queryStartParams['start_at-gt'] = this.moment.utc().format();
-                    }
+                    }else{
+						queryStartParams['end_at'] = null;
+					}
 
                     var query = this.UrlParamsMerge(queryStartParams);
 

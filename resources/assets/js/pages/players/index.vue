@@ -148,7 +148,7 @@
                     'site_id': 2,
                     '_with' : 'team,country,team.fights',
                     "active" : 1,
-                    "_sort" : '-id'
+                    "_sort" : '-wins'
                 };
 
                 if(parseInt(this.status_id)==0 || parseInt(this.status_id)==1)
