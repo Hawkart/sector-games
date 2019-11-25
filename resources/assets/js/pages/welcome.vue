@@ -8,27 +8,30 @@
             <div class="col-lg-12">
             <flickity ref="flickity" :options="flickityOptions">
                 <div class="carousel-cell" style="background-image: url('/images/slider/slide_1.png')">
-                    <h3>МУЛЬТИДИСЦИПЛИНАРНЫЙ КИБЕРСПОРТИВНЫЙ <br/>ФЕСТИВАЛЬ SECTOR </h3>
-                    <h4 class="text-main-1" v-if="daysTo>0">Регистрация начнется через <strong>{{daysTo}}</strong> дня </h4>
+                    <h3>MULTIDISCIPLINARY CYBER SPORTS <br/> SECTOR FESTIVAL </h3>
+                    <h4 class="text-main-1" v-if="daysTo>0">Registration will begin in <strong>{{daysTo}}</strong> days </h4>
                     <h4 class="text-main-1" v-else>
                         <router-link :to="{ name: 'register' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white">
-                        зарегистрируйтесь</router-link>
+                            {{ $t('register') }}
+                        </router-link>
                     </h4>
                 </div>
-                <div class="carousel-cell" style="background-image: url('/images/slider/slide_2.png')">
+                <!--<div class="carousel-cell" style="background-image: url('/images/slider/slide_2.png')">
                     <h3>Яркое событие с лучшими командами <br/> мира и огромными призовыми</h3>
                     <h4 class="text-main-1" v-if="daysTo>0">Регистрация начнется через <strong>{{daysTo}}</strong> дня </h4>
                     <h4 class="text-main-1" v-else>
                         <router-link :to="{ name: 'register' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white">
-                            зарегистрируйтесь</router-link>
+                            {{ $t('register') }}
+                        </router-link>
                     </h4>
-                </div>
+                </div>-->
                 <div class="carousel-cell"  style="background-image: url('/images/slider/slide_3.png')">
-                    <h3>Возможность выиграть автомобиль</h3>
-                    <h4 class="text-main-1" v-if="daysTo>0">Регистрация начнется через <strong>{{daysTo}}</strong> дня </h4>
+                    <h3>Opportunity to win a car</h3>
+                    <h4 class="text-main-1" v-if="daysTo>0">Registration will begin in <strong>{{daysTo}}</strong> days </h4>
                     <h4 class="text-main-1" v-else>
                         <router-link :to="{ name: 'register' }" class="nk-btn nk-btn-rounded nk-btn-color-main-1 text-white">
-                            зарегистрируйтесь</router-link>
+                            {{ $t('register') }}
+                        </router-link>
                     </h4>
                 </div>
             </flickity>
